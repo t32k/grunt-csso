@@ -16,8 +16,8 @@ You need to have [node.js](http://nodejs.org/), [grunt.js](https://github.com/co
 	```javascript
     csso: {
       dist: {
-        src: '../files/css/app.css',
-        dest:'../files/css/app.min.css'
+        src: 'assets/css/core.css',
+        dest:'assets/css/core.min.css'
       }
     }
 	```
