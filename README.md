@@ -22,7 +22,7 @@ You need to have [node.js](http://nodejs.org/), [grunt.js](https://github.com/co
     }
 	```
 
-5. You can turns structure minimization off like this:
+4. You can turns structure minimization off like this:
 
     ```javascript
     // Default value is true.
