@@ -1,51 +1,74 @@
-module.exports = function( grunt ) {
+/*
+ * grunt-csso
+ * http://github.com/t32k/grunt-csso
+ * http://en.t32k.me
+ *
+ * Copyright (c) 2012 Koji Ishimoto
+ * Licensed under the MIT license.
+ */
+ 
+ 'use strict';
 
-    // Create a new multi task.
-    grunt.registerMultiTask( 'csso', 'This triggers the `csso` command.', function() {
+module.exports = function (grunt) {
 
-        // Tell grunt this task is asynchronous.
-        var done = this.async(),
-            exec = require('child_process').exec,
-            command = "csso",
-            src = undefined,
-            dest = undefined,
-            restructure = this.data.restructure;
+    // Install node modules
+    var fs = require('fs'),
+        gzip = require('gzip-js'),
+        csso = require('csso');
 
-        if ( this.data.src !== undefined ) {
-            src = grunt.template.process(this.data.src);
+
+    // Tasks
+    // ==========================================================================
+
+    grunt.registerMultiTask('csso', 'Minification task with CSSO.', function () {
+
+        grunt.log.subhead('Optimizing with CSSO...');
+
+        var minBuf,
+            inputDir  = this.file.src,
+            outputDir = this.file.dest,
+            inputBuf  = grunt.file.read(inputDir),
+            inputSize = fs.statSync(inputDir).size,
+            isOption  = (this.data.restructure === false) ? false : true;
+
+        // Override if `src` only
+        if (outputDir === undefined) {
+            outputDir = inputDir;
         }
 
-        if ( this.data.dest !== undefined ) {
-            dest = grunt.template.process(this.data.dest);
+        // Check restructure option
+        if (isOption) {
+            minBuf = csso.justDoIt(inputBuf);
+        } else {
+            minBuf = csso.justDoIt(inputBuf, true);
         }
 
-        if ( src !== undefined && dest !== undefined ) {
-            command += ' ' + src + ' ' + dest;
-        }
-        if ( src !== undefined && dest === undefined ) {
-            command += ' ' + src;
-        }
-        if ( restructure === false ) {
-            command += ' -off ';
-        }
-        if ( src === undefined && dest === undefined ) {
-            grunt.log.error();
-            grunt.log.write( 'CSSO `src` is undefined.\n' );
-            return false;
-        }
-        
-        function puts( error, stdout, stderr ) {
-            grunt.log.write( '\n\nCSSO output:\n' );
-            grunt.log.write( stdout );
-            if ( error !== null ) {
-                grunt.log.error( error );
-                done(false);
-            }
-            else {
-                done(true);
-            }
-        }
-        exec( command, puts );
-        grunt.log.write( '`' + command + '` was initiated.' );
+        // Generate minified file
+        grunt.file.write(outputDir, minBuf);
+
+        // Output log of result
+        printInfo(inputDir, inputSize, outputDir, minBuf);
+
     });
+
+
+    // Helpers
+    // ==========================================================================
+
+    // Return gzipped source.
+    var getGzip = function (buf) {
+        return buf ? gzip.zip(buf, {}) : '';
+    };
+
+    // Output some size info about a file.
+    var printInfo = function (odir, oSize, mdir, mbuf) {
+        var fileName = String(mdir).green,
+            origSize = String(oSize).green,
+            minSize  = String(fs.statSync(mdir).size).green,
+            gzipSize = String(getGzip(mbuf).length).green;
+        grunt.log.writeln(' File "' + fileName + '" created.');
+        grunt.log.writeln(' Uncompressed size: ' + origSize + ' bytes.');
+        grunt.log.writeln(' Compressed size: ' + gzipSize + ' bytes gzipped ( ' + minSize + ' bytes minified ).');
+    };
+
 };

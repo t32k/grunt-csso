@@ -1,10 +1,10 @@
 # grunt-csso
 
-This is a custom grunt.js multitask aka [gruntplugin](http://jsfiddle.net/cowboy/qzRjD/show/) that executes `csso` on the command line for you.
+This is a custom grunt.js multitask aka [gruntplugin](http://jsfiddle.net/cowboy/qzRjD/show/) that minification task with [CSSO](http://css.github.com/csso/) for you.
 
 ## Dependencies
 
-You need to have [node.js](http://nodejs.org/), [grunt.js](https://github.com/cowboy/grunt), and [csso](http://css.github.com/csso/) installed for this to work.
+You need to have [node.js](http://nodejs.org/), [grunt.js](https://github.com/cowboy/grunt), installed for this to work.
 
 ## Installation & Options
 
@@ -31,15 +31,39 @@ You need to have [node.js](http://nodejs.org/), [grunt.js](https://github.com/co
 
 # An Example Setup
 
+This is the "full" format.
+
 ```javascript
 csso: {
-  dist: {
-    src: '../files/css/app.css',
-    dest:'../files/css/app.min.css',
+  dev: {
+    src: '../files/css/dev/app.css',
+    dest:'../files/css/dev/app.min.css',
     restructure: false
+  }
+  prod: {
+    // Override 'src' if 'dest' is undefiend.
+    src: '../files/css/app.css',
   }
 }
 ```
+
+You can write with the "compact" format.
+
+```javascript
+csso: {
+  // 'dest' : 'src'
+  'foo.min.css' : 'foo.css',
+  'bar.min.css' : 'bar.css',
+  'min.min.css' : 'baz.css'
+}
+```
+
+# Release History
+
++ 2012/10/20 - v0.2.0 - Changed CSSO task from the command line to from the npm module.
++ 2012/10/15 - v0.1.1 - Added keyword "gruntplugin" to package.json.
++ 2012/10/14 - v0.1.0 - Initial release.
+
 
 # LICENSE MIT
 

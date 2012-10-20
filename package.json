@@ -1,7 +1,7 @@
 {
   "name": "grunt-csso",
-  "description": "A custom grunt.js task that executes CSSO command for you.",
-  "version": "0.1.1",
+  "description": "Minification task with CSSO.",
+  "version": "0.2.0",
   "homepage": "https://github.com/t32k/grunt-csso",
   "author": {
     "name": "Koji Ishimoto",
@@ -22,13 +22,21 @@
     }
   ],
   "main": "grunt.js",
-  "bin": "bin/grunt-csso",
   "engines": {
-    "node": "*"
+    "node": ">=0.8.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "csso": "~1.3.4",
+    "gzip-js": "~0.3.1"
+  },
   "devDependencies": {
-    "grunt": ">=0.3.7"
+    "grunt": "~0.3.17"
   },
-  "keywords": ["gruntplugin", "grunt.js", "csso", "minimizer", "optimizer"]
+  "keywords": [
+    "gruntplugin",
+    "grunt.js",
+    "csso",
+    "minimizer",
+    "optimizer"
+  ]
 }
