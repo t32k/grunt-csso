@@ -7,7 +7,7 @@
  * Licensed under the MIT license.
  */
  
- 'use strict';
+'use strict';
 
 module.exports = function (grunt) {
 
@@ -47,7 +47,7 @@ module.exports = function (grunt) {
         grunt.file.write(outputDir, minBuf);
 
         // Output log of result
-        printInfo(inputDir, inputSize, outputDir, minBuf);
+        printInfo(inputSize, outputDir, minBuf);
 
     });
 
@@ -61,7 +61,7 @@ module.exports = function (grunt) {
     };
 
     // Output some size info about a file.
-    var printInfo = function (odir, oSize, mdir, mbuf) {
+    var printInfo = function (oSize, mdir, mbuf) {
         var fileName = String(mdir).green,
             origSize = String(oSize).green,
             minSize  = String(fs.statSync(mdir).size).green,
