@@ -38,23 +38,40 @@ csso: {
   dev: {
     src: '../files/css/dev/app.css',
     dest:'../files/css/dev/app.min.css',
-    restructure: false
-  }
-  prod: {
-    // Override 'src' if 'dest' is undefiend.
-    src: '../files/css/app.css',
+    options: {
+      restructure: true
+    }
   }
 }
 ```
 
-You can write with the "compact" format.
+You can also be written in such these format.
 
 ```javascript
+// files format
 csso: {
-  // 'dest' : 'src'
-  'foo.min.css' : 'foo.css',
-  'bar.min.css' : 'bar.css',
-  'min.min.css' : 'baz.css'
+  dist: {
+    files: {
+      // dest       : src
+      'foo.min.css' : 'foo.css',
+      'bar.min.css' : 'bar.css',
+      'baz.min.css' : 'baz.css'
+    },
+    options: {
+      restructure: false
+    }
+  }
+}
+
+// individual dest
+csso: {
+  dev: {
+    src : ['src/css/foo.css', 'src/css/bar.css', 'src/css/baz.css'],
+    dest: 'dist/css/*',
+    options: {
+      restructure: true
+    }
+  }
 }
 ```
 

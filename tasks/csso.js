@@ -6,15 +6,15 @@
  * Copyright (c) 2012 Koji Ishimoto
  * Licensed under the MIT license.
  */
- 
-'use strict';
-
 module.exports = function (grunt) {
 
+    'use strict';
+
     // Install node modules
-    var fs = require('fs'),
+    var fs   = require('fs'),
         gzip = require('gzip-js'),
-        csso = require('csso');
+        csso = require('csso'),
+        path = require('path');
 
 
     // Tasks
@@ -24,17 +24,52 @@ module.exports = function (grunt) {
 
         grunt.log.subhead('Optimizing with CSSO...');
 
-        var minBuf,
-            inputDir  = this.file.src,
-            outputDir = this.file.dest,
-            inputBuf  = grunt.file.read(inputDir),
-            inputSize = fs.statSync(inputDir).size,
-            isOption  = (this.data.restructure === false) ? false : true;
+        var helpers = require('grunt-lib-contrib').init(grunt),
+            options = helpers.options(this, {
+                basePath: false,
+                flatten: false
+            }),
+            isOption = options.restructure !== false;
 
-        // Override if `src` only
-        if (outputDir === undefined) {
-            outputDir = inputDir;
-        }
+        this.files = this.files || helpers.normalizeMultiTaskFiles(this.data, this.target);
+
+        this.files.forEach(function(file) {
+            file.dest    = path.normalize(file.dest);
+            var srcFiles = grunt.file.expandFiles(file.src),
+                basePath;
+
+            // output to specific dir
+            if (helpers.isIndividualDest(file.dest)) {
+                basePath = helpers.findBasePath(srcFiles, options.basePath);
+
+                srcFiles.forEach(function(srcFile) {
+                    var newFileDest = helpers.buildIndividualDest(file.dest, srcFile, basePath, options.flatten);
+                    processCSSO(srcFile, newFileDest, isOption);
+                });
+
+            // output to each dest file
+            } else {
+                srcFiles.forEach(function(srcFile) {
+                    processCSSO(srcFile, file.dest, isOption);
+                });
+            }
+        });
+    });
+
+
+    // Helpers
+    // ==========================================================================
+
+    /**
+     * Process CSSO minification
+     * @param {String} src
+     * @param {String} dest
+     * @param {Boolean} isOption
+     */
+    var processCSSO = function (src, dest, isOption) {
+        var inputBuf = grunt.file.read(src),
+            inputSize = fs.statSync(src).size,
+            minBuf;
 
         // Check restructure option
         if (isOption) {
@@ -44,23 +79,28 @@ module.exports = function (grunt) {
         }
 
         // Generate minified file
-        grunt.file.write(outputDir, minBuf);
+        grunt.file.write(dest, minBuf);
 
         // Output log of result
-        printInfo(inputSize, outputDir, minBuf);
+        printInfo(inputSize, dest, minBuf);
+    };
 
-    });
-
-
-    // Helpers
-    // ==========================================================================
-
-    // Return gzipped source.
+    /**
+     * Return gzipped source.
+     *
+     * @param {Buffer} buf
+     */
     var getGzip = function (buf) {
         return buf ? gzip.zip(buf, {}) : '';
     };
 
-    // Output some size info about a file.
+    /**
+     * Output some size info about a file.
+     *
+     * @param {Number} oSize
+     * @param {String} mdir
+     * @param {Buffer} mbuf
+     */
     var printInfo = function (oSize, mdir, mbuf) {
         var fileName = String(mdir).green,
             origSize = String(oSize).green,
