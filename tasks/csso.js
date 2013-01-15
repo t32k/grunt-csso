@@ -35,7 +35,7 @@ module.exports = function (grunt) {
 
         this.files.forEach(function(file) {
             file.dest    = path.normalize(file.dest);
-            var srcFiles = grunt.file.expandFiles(file.src),
+            var srcFiles = grunt.file.expand(file.src),
                 basePath;
 
             // output to specific dir
