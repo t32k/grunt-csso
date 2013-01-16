@@ -77,7 +77,8 @@ csso: {
 
 # Release History
 
-+ 2012/10/20 - v0.2.1 - Fix function to remove unnecessary argument,
++ 2013/01/17 - v0.3.0 - Improve file handling.
++ 2012/10/20 - v0.2.1 - Fix function to remove unnecessary argument.
 + 2012/10/20 - v0.2.0 - Changed CSSO task from the command line to from the npm module.
 + 2012/10/15 - v0.1.1 - Added keyword "gruntplugin" to package.json.
 + 2012/10/14 - v0.1.0 - Initial release.
