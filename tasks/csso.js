@@ -108,7 +108,7 @@ module.exports = function (grunt) {
             gzipSize = String(getGzip(mbuf).length).green;
         grunt.log.writeln(' File "' + fileName + '" created.');
         grunt.log.writeln(' Uncompressed size: ' + origSize + ' bytes.');
-        grunt.log.writeln(' Compressed size: ' + gzipSize + ' bytes gzipped ( ' + minSize + ' bytes minified ).');
+        grunt.log.writeln(' Compressed size: ' + gzipSize + ' bytes gzipped (' + minSize + ' bytes minified).');
     };
 
 };
