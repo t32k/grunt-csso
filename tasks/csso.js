@@ -3,7 +3,7 @@
  * http://github.com/t32k/grunt-csso
  * http://en.t32k.me
  *
- * Copyright (c) 2012 Koji Ishimoto
+ * Copyright (c) 2013 Koji Ishimoto
  * Licensed under the MIT license.
  */
 module.exports = function (grunt) {
@@ -12,10 +12,19 @@ module.exports = function (grunt) {
 
     // Install node modules
     var fs   = require('fs'),
-        gzip = require('gzip-js'),
+        path = require('path'),
         csso = require('csso'),
-        path = require('path');
+        gzip = require('gzip-js');
 
+    // Supported compatibility Grunt 0.3/0.4
+    var expandFiles;
+    if (grunt.file.expandFiles) {
+      expandFiles = grunt.file.expandFiles;
+    } else {
+      expandFiles = function(filesPattern) {
+        return grunt.file.expand({filter: 'isFile'}, filesPattern);
+      };
+    }
 
     // Tasks
     // ==========================================================================
@@ -24,7 +33,8 @@ module.exports = function (grunt) {
 
         grunt.log.subhead('Optimizing with CSSO...');
 
-        var helpers = require('grunt-lib-contrib').init(grunt),
+        // NOTE: Deprecated module
+        var helpers = require('grunt-contrib-lib').init(grunt),
             options = helpers.options(this, {
                 basePath: false,
                 flatten: false
@@ -35,7 +45,7 @@ module.exports = function (grunt) {
 
         this.files.forEach(function(file) {
             file.dest    = path.normalize(file.dest);
-            var srcFiles = grunt.file.expandFiles(file.src),
+            var srcFiles = expandFiles(file.src),
                 basePath;
 
             // output to specific dir
@@ -108,7 +118,7 @@ module.exports = function (grunt) {
             gzipSize = String(getGzip(mbuf).length).green;
         grunt.log.writeln(' File "' + fileName + '" created.');
         grunt.log.writeln(' Uncompressed size: ' + origSize + ' bytes.');
-        grunt.log.writeln(' Compressed size: ' + gzipSize + ' bytes gzipped ( ' + minSize + ' bytes minified ).');
+        grunt.log.writeln(' Compressed size: ' + gzipSize + ' bytes gzipped (' + minSize + ' bytes minified).');
     };
 
 };

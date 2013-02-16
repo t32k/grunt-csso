@@ -62,7 +62,9 @@ csso: {
     }
   }
 }
+```
 
+```
 // individual dest
 csso: {
   dev: {
@@ -77,6 +79,7 @@ csso: {
 
 # Release History
 
++ 2013/02/17 - v0.4.0 - Support compatibility with Grunt 0.4.
 + 2013/01/17 - v0.3.0 - Improve file handling.
 + 2012/10/20 - v0.2.1 - Fix function to remove unnecessary argument.
 + 2012/10/20 - v0.2.0 - Changed CSSO task from the command line to from the npm module.
@@ -86,7 +89,7 @@ csso: {
 
 # LICENSE MIT
 
-Copyright (c) 2012 Koji Ishimoto
+Copyright (c) 2013 Koji Ishimoto
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation
