@@ -64,7 +64,7 @@ csso: {
 }
 ```
 
-```
+```javascript
 // individual dest
 csso: {
   dev: {
