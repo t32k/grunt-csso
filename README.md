@@ -31,8 +31,6 @@ You need to have [node.js](http://nodejs.org/), [grunt.js](https://github.com/co
 
 # An Example Setup
 
-This is the "full" format.
-
 ```javascript
 csso: {
   options: {
