@@ -6,119 +6,67 @@
  * Copyright (c) 2013 Koji Ishimoto
  * Licensed under the MIT license.
  */
+
+'use strict';
+
 module.exports = function (grunt) {
 
-    'use strict';
-
-    // Install node modules
-    var fs   = require('fs'),
-        path = require('path'),
-        csso = require('csso'),
-        gzip = require('gzip-js');
-
-    // Supported compatibility Grunt 0.3/0.4
-    var expandFiles;
-    if (grunt.file.expandFiles) {
-      expandFiles = grunt.file.expandFiles;
-    } else {
-      expandFiles = function(filesPattern) {
-        return grunt.file.expand({filter: 'isFile'}, filesPattern);
-      };
-    }
+    var csso   = require('csso'),
+        helper = require('grunt-lib-contrib').init(grunt);
 
     // Tasks
     // ==========================================================================
 
-    grunt.registerMultiTask('csso', 'Minification task with CSSO.', function () {
+    grunt.registerMultiTask('csso', 'Minify CSS files with CSSO.', function () {
 
-        grunt.log.subhead('Optimizing with CSSO...');
+        grunt.log.subhead('Minify with CSSO...');
 
-        // NOTE: Deprecated module
-        var helpers = require('grunt-contrib-lib').init(grunt),
-            options = helpers.options(this, {
-                basePath: false,
-                flatten: false
-            }),
-            isOption = options.restructure !== false;
+        var options = this.options({
+            restructure: true
+        });
 
-        this.files = this.files || helpers.normalizeMultiTaskFiles(this.data, this.target);
+        this.files.forEach(function(f) {
+            var max = f.src.filter(function(filepath) {
+                // Warn on and remove invalid source files (if nonull was set).
+                if (!grunt.file.exists(filepath)) {
+                    grunt.log.warn('Source file "' + filepath + '" not found.');
+                    return false;
+                } else {
+                    return true;
+                }
+            })
+            .map(grunt.file.read)
+            .join(grunt.util.normalizelf(grunt.util.linefeed));
 
-        this.files.forEach(function(file) {
-            file.dest    = path.normalize(file.dest);
-            var srcFiles = expandFiles(file.src),
-                basePath;
-
-            // output to specific dir
-            if (helpers.isIndividualDest(file.dest)) {
-                basePath = helpers.findBasePath(srcFiles, options.basePath);
-
-                srcFiles.forEach(function(srcFile) {
-                    var newFileDest = helpers.buildIndividualDest(file.dest, srcFile, basePath, options.flatten);
-                    processCSSO(srcFile, newFileDest, isOption);
-                });
-
-            // output to each dest file
+            var min = processCSSO(max, options.restructure);
+            if (min.length < 1) {
+                grunt.log.warn('Destination not written because minified CSS was empty.');
             } else {
-                srcFiles.forEach(function(srcFile) {
-                    processCSSO(srcFile, file.dest, isOption);
-                });
+                grunt.file.write(f.dest, min);
+                grunt.log.writeln('File ' + String(f.dest).green + ' created.');
+                helper.minMaxInfo(min, max);
+                grunt.log.write('\n');
             }
         });
     });
 
 
-    // Helpers
+    // Helper
     // ==========================================================================
 
     /**
      * Process CSSO minification
      * @param {String} src
-     * @param {String} dest
-     * @param {Boolean} isOption
+     * @param {Boolean} isOpt
      */
-    var processCSSO = function (src, dest, isOption) {
-        var inputBuf = grunt.file.read(src),
-            inputSize = fs.statSync(src).size,
-            minBuf;
-
-        // Check restructure option
-        if (isOption) {
-            minBuf = csso.justDoIt(inputBuf);
+    var processCSSO = function (src, isOpt) {
+        var min;
+        if (isOpt) {
+            min = csso.justDoIt(src);
         } else {
-            minBuf = csso.justDoIt(inputBuf, true);
+            min = csso.justDoIt(src, true);
         }
-
-        // Generate minified file
-        grunt.file.write(dest, minBuf);
-
-        // Output log of result
-        printInfo(inputSize, dest, minBuf);
-    };
-
-    /**
-     * Return gzipped source.
-     *
-     * @param {Buffer} buf
-     */
-    var getGzip = function (buf) {
-        return buf ? gzip.zip(buf, {}) : '';
-    };
-
-    /**
-     * Output some size info about a file.
-     *
-     * @param {Number} oSize
-     * @param {String} mdir
-     * @param {Buffer} mbuf
-     */
-    var printInfo = function (oSize, mdir, mbuf) {
-        var fileName = String(mdir).green,
-            origSize = String(oSize).green,
-            minSize  = String(fs.statSync(mdir).size).green,
-            gzipSize = String(getGzip(mbuf).length).green;
-        grunt.log.writeln(' File "' + fileName + '" created.');
-        grunt.log.writeln(' Uncompressed size: ' + origSize + ' bytes.');
-        grunt.log.writeln(' Compressed size: ' + gzipSize + ' bytes gzipped (' + minSize + ' bytes minified).');
+        return min;
     };
 
 };

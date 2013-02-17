@@ -11,18 +11,18 @@ You need to have [node.js](http://nodejs.org/), [grunt.js](https://github.com/co
 1. Install this grunt plugin next to your project's grunt.js gruntfile with: `npm install grunt-csso`.
 2. Call `grunt.loadNpmTasks('grunt-csso')` in your gruntfile.
 3. Configure `grunt csso` to minimizes your CSS file and call the task(s).
-	e.g.:
+  e.g.:
 
-	```javascript
+  ```javascript
     csso: {
       dist: {
         src: 'assets/css/core.css',
         dest:'assets/css/core.min.css'
       }
     }
-	```
+  ```
 
-4. You can turns structure minimization off like this:
+4. You can turns __structure minimization__ off like this:
 
     ```javascript
     // Default value is true.
@@ -35,46 +35,25 @@ This is the "full" format.
 
 ```javascript
 csso: {
+  options: {
+    restructure: false
+  },
   dev: {
-    src: '../files/css/dev/app.css',
-    dest:'../files/css/dev/app.min.css',
-    options: {
-      restructure: true
-    }
-  }
-}
-```
-
-You can also be written in such these format.
-
-```javascript
-// files format
-csso: {
-  dist: {
     files: {
-      // dest       : src
-      'foo.min.css' : 'foo.css',
-      'bar.min.css' : 'bar.css',
-      'baz.min.css' : 'baz.css'
-    },
-    options: {
-      restructure: false
+      "path/to/output.css": ["path/to/input_one.css", "path/to/input_two.css"]
     }
-  }
-}
-```
-
-```javascript
-// individual dest
-csso: {
-  dev: {
-    src : ['src/css/foo.css', 'src/css/bar.css', 'src/css/baz.css'],
-    dest: 'dist/css/*',
+  },
+  prod: {
     options: {
       restructure: true
-    }
+    },
+    files: [
+      {src: 'path/to/input_one.css', dest: 'path/to/output_one.css'},
+      {src: 'path/to/input_two.css', dest: 'path/to/output_two.css'}
+    ]
   }
 }
+
 ```
 
 # Release History
@@ -86,6 +65,12 @@ csso: {
 + 2012/10/15 - v0.1.1 - Added keyword "gruntplugin" to package.json.
 + 2012/10/14 - v0.1.0 - Initial release.
 
+# Contributors
+
+Many thanks!
+
++ [Tyler Kellen](https://github.com/tkellen)
++ [Ayumu Sato](https://github.com/ahomu)
 
 # LICENSE MIT
 
