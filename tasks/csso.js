@@ -22,8 +22,12 @@ module.exports = function (grunt) {
         grunt.log.subhead('Minify with CSSO...');
 
         var options = this.options({
-            restructure: true
+            restructure: true,
+            banner: ''
         });
+
+        // Process banner.
+        var banner = grunt.template.process(options.banner);
 
         this.files.forEach(function(f) {
             var max = f.src.filter(function(filepath) {
@@ -42,6 +46,9 @@ module.exports = function (grunt) {
             if (min.length < 1) {
                 grunt.log.warn('Destination not written because minified CSS was empty.');
             } else {
+                // Add banner.
+                min = banner + min;
+
                 grunt.file.write(f.dest, min);
                 grunt.log.writeln('File ' + String(f.dest).green + ' created.');
                 helper.minMaxInfo(min, max);
