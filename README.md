@@ -29,12 +29,19 @@ You need to have [node.js](http://nodejs.org/), [grunt.js](https://github.com/co
     restructure: false
     ```
 
+5. You can add banner comment like in [grunt-contrib-concat](https://github.com/gruntjs/grunt-contrib-concat) or [grunt-contrib-uglify](https://github.com/gruntjs/grunt-contrib-uglify):
+
+    ```javascript
+    banner: '/* Copyleft */'
+    ```
+
 # An Example Setup
 
 ```javascript
 csso: {
   options: {
-    restructure: false
+    restructure: false,
+    banner: '/* Copyleft */'
   },
   dev: {
     files: {
