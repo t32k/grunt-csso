@@ -1,7 +1,7 @@
 {
   "name": "grunt-csso",
   "description": "Compress CSS files with CSSO.",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "homepage": "https://github.com/t32k/grunt-csso",
   "author": {
     "name": "Koji Ishimoto",
