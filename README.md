@@ -63,6 +63,7 @@ csso: {
 
 # Release History
 
++ 2013/02/25 - v0.4.1 - Add banner comment option. 
 + 2013/02/17 - v0.4.0 - Support compatibility with Grunt 0.4.
 + 2013/01/17 - v0.3.0 - Improve file handling.
 + 2012/10/20 - v0.2.1 - Fix function to remove unnecessary argument.
@@ -76,6 +77,7 @@ Many thanks!
 
 + [Tyler Kellen](https://github.com/tkellen)
 + [Ayumu Sato](https://github.com/ahomu)
++ [Artem Sapegin](https://github.com/sapegin)
 
 # LICENSE MIT
 
