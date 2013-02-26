@@ -1,10 +1,24 @@
 # grunt-csso
 
-This is a custom grunt.js multitask aka [gruntplugin](http://jsfiddle.net/cowboy/qzRjD/show/) that minification task with [CSSO](http://css.github.com/csso/) for you.
+> Minify CSS files with CSSO.
 
-## Dependencies
+## Getting Started
+This plugin requires Grunt `~0.4.0`
 
-You need to have [node.js](http://nodejs.org/), [grunt.js](https://github.com/cowboy/grunt), installed for this to work.
+If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
+
+```shell
+npm install grunt-csso --save-dev
+```
+
+Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of js:
+
+```js
+grunt.loadNpmTasks('grunt-csso');
+```
+
+*This plugin was designed to work with Grunt 0.4.x. If you're still using grunt v0.3.x it's strongly recommended that [you upgrade](http://gruntjs.com/upgrading-from-0.3-to-0.4).*
+
 
 ## Installation & Options
 
@@ -13,7 +27,7 @@ You need to have [node.js](http://nodejs.org/), [grunt.js](https://github.com/co
 3. Configure `grunt csso` to minimizes your CSS file and call the task(s).
   e.g.:
 
-  ```javascript
+  ```js
     csso: {
       dist: {
         src: 'assets/css/core.css',
@@ -24,44 +38,44 @@ You need to have [node.js](http://nodejs.org/), [grunt.js](https://github.com/co
 
 4. You can turns __structure minimization__ off like this:
 
-    ```javascript
+    ```js
     // Default value is true.
     restructure: false
     ```
 
 5. You can add banner comment like in [grunt-contrib-concat](https://github.com/gruntjs/grunt-contrib-concat) or [grunt-contrib-uglify](https://github.com/gruntjs/grunt-contrib-uglify):
 
-    ```javascript
+    ```js
     banner: '/* Copyleft */'
     ```
 
-# An Example Setup
+## An Example Setup
 
-```javascript
-csso: {
-  options: {
-    restructure: false,
-    banner: '/* Copyleft */'
-  },
-  dev: {
-    files: {
-      "path/to/output.css": ["path/to/input_one.css", "path/to/input_two.css"]
-    }
-  },
-  prod: {
+  ```js
+  csso: {
     options: {
-      restructure: true
+      restructure: false,
+      banner: '/* Copyleft */'
     },
-    files: [
-      {src: 'path/to/input_one.css', dest: 'path/to/output_one.css'},
-      {src: 'path/to/input_two.css', dest: 'path/to/output_two.css'}
-    ]
+    dev: {
+      files: {
+        "path/to/output.css": ["path/to/input_one.css", "path/to/input_two.css"]
+      }
+    },
+    prod: {
+      options: {
+        restructure: true
+      },
+      files: [
+        {src: 'path/to/input_one.css', dest: 'path/to/output_one.css'},
+        {src: 'path/to/input_two.css', dest: 'path/to/output_two.css'}
+      ]
+    }
   }
-}
 
 ```
 
-# Release History
+## Release History
 
 + 2013/02/25 - v0.4.1 - Add banner comment option. 
 + 2013/02/17 - v0.4.0 - Support compatibility with Grunt 0.4.
@@ -71,7 +85,7 @@ csso: {
 + 2012/10/15 - v0.1.1 - Added keyword "gruntplugin" to package.json.
 + 2012/10/14 - v0.1.0 - Initial release.
 
-# Contributors
+## Contributors
 
 Many thanks!
 
@@ -79,7 +93,7 @@ Many thanks!
 + [Ayumu Sato](https://github.com/ahomu)
 + [Artem Sapegin](https://github.com/sapegin)
 
-# LICENSE MIT
+## LICENSE MIT
 
 Copyright (c) 2013 Koji Ishimoto
 
