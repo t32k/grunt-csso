@@ -49,7 +49,7 @@ grunt.loadNpmTasks('grunt-csso');
     banner: '/* Copyleft */'
     ```
 
-## An Example Setup
+## Example Setup
 
   ```js
   csso: {
@@ -72,8 +72,7 @@ grunt.loadNpmTasks('grunt-csso');
       ]
     }
   }
-
-```
+  ```
 
 ## Release History
 
@@ -93,7 +92,9 @@ Many thanks!
 + [Ayumu Sato](https://github.com/ahomu)
 + [Artem Sapegin](https://github.com/sapegin)
 
-## LICENSE MIT
+---
+
+# LICENSE MIT
 
 Copyright (c) 2013 Koji Ishimoto
 
