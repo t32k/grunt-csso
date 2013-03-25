@@ -1,4 +1,4 @@
-# grunt-csso
+# grunt-csso [![Build Status](https://travis-ci.org/t32k/grunt-csso.png)](https://travis-ci.org/t32k/grunt-csso)
 
 > Minify CSS files with CSSO.
 
