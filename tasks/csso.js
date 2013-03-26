@@ -6,12 +6,11 @@
  * Copyright (c) 2013 Koji Ishimoto
  * Licensed under the MIT license.
  */
-
 'use strict';
 
 module.exports = function (grunt) {
 
-    var csso   = require('csso'),
+    var csso = require('csso'),
         helper = require('grunt-lib-contrib').init(grunt);
 
     // Tasks
@@ -19,18 +18,17 @@ module.exports = function (grunt) {
 
     grunt.registerMultiTask('csso', 'Minify CSS files with CSSO.', function () {
 
-        grunt.log.subhead('Minify with CSSO...');
-
         var options = this.options({
             restructure: true,
-            banner: ''
+            banner: '',
+            report: false
         });
 
         // Process banner.
         var banner = grunt.template.process(options.banner);
 
-        this.files.forEach(function(f) {
-            var max = f.src.filter(function(filepath) {
+        this.files.forEach(function (f) {
+            var max = f.src.filter(function (filepath) {
                 // Warn on and remove invalid source files (if nonull was set).
                 if (!grunt.file.exists(filepath)) {
                     grunt.log.warn('Source file "' + filepath + '" not found.');
@@ -39,8 +37,8 @@ module.exports = function (grunt) {
                     return true;
                 }
             })
-            .map(grunt.file.read)
-            .join(grunt.util.normalizelf(grunt.util.linefeed));
+                .map(grunt.file.read)
+                .join(grunt.util.normalizelf(grunt.util.linefeed));
 
             var min = processCSSO(max, options.restructure);
             if (min.length < 1) {
@@ -51,8 +49,9 @@ module.exports = function (grunt) {
 
                 grunt.file.write(f.dest, min);
                 grunt.log.writeln('File ' + String(f.dest).green + ' created.');
-                helper.minMaxInfo(min, max);
-                grunt.log.write('\n');
+                if (options.report) {
+                    helper.minMaxInfo(min, max, options.report);
+                }
             }
         });
     });

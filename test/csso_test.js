@@ -3,7 +3,7 @@
 var grunt = require('grunt');
 
 exports.cssmin = {
-  main: function(test) {
+  main: function (test) {
     test.expect(1);
 
     var expect = grunt.file.read('test/expected/output.css');
@@ -12,7 +12,7 @@ exports.cssmin = {
 
     test.done();
   },
-  restructure: function(test) {
+  restructure: function (test) {
     test.expect(1);
 
     var expect = grunt.file.read('test/expected/restructure.css');
@@ -21,7 +21,7 @@ exports.cssmin = {
 
     test.done();
   },
-  banner: function(test) {
+  banner: function (test) {
     test.expect(1);
 
     var expect = grunt.file.read('test/expected/banner.css');
@@ -30,7 +30,7 @@ exports.cssmin = {
 
     test.done();
   },
-  empty: function(test) {
+  empty: function (test) {
     test.expect(1);
 
     test.ok(!grunt.file.exists('tmp/idontexist.css'), 'Empty minified file should not exist');

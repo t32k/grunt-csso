@@ -30,8 +30,9 @@ grunt.loadNpmTasks('grunt-csso');
   ```js
     csso: {
       dist: {
-        src: 'assets/css/core.css',
-        dest:'assets/css/core.min.css'
+        files: {
+          'tmp/output.css': ['test/fixtures/input.css']
+        }
       }
     }
   ```
@@ -39,44 +40,68 @@ grunt.loadNpmTasks('grunt-csso');
 4. You can turns __structure minimization__ off like this:
 
     ```js
-    // Default value is true.
+    // Default Option value is true.
     restructure: false
     ```
 
 5. You can add banner comment like in [grunt-contrib-concat](https://github.com/gruntjs/grunt-contrib-concat) or [grunt-contrib-uglify](https://github.com/gruntjs/grunt-contrib-uglify):
 
     ```js
+    // Option
     banner: '/* Copyleft */'
     ```
+
+6. You can change report style.
+
+    ```js
+    // Choices: false, 'min', 'gzip'
+    // Default Option value is false.
+    report: 'gzip'
+    ```
+
+Example ouput using 'min':
+
+  ```
+  Original: 99 bytes.
+  Minified: 72 bytes.
+  ```
 
 ## Example Setup
 
   ```js
   csso: {
-    options: {
-      restructure: false,
-      banner: '/* Copyleft */'
-    },
-    dev: {
+    compress: {
+      options: {
+        report: 'gzip'
+      },
       files: {
-        "path/to/output.css": ["path/to/input_one.css", "path/to/input_two.css"]
+        'tmp/output.css': ['test/fixtures/input.css']
       }
     },
-    prod: {
+    restructure: {
       options: {
-        restructure: true
+        restructure: false,
+        report: 'min'
       },
-      files: [
-        {src: 'path/to/input_one.css', dest: 'path/to/output_one.css'},
-        {src: 'path/to/input_two.css', dest: 'path/to/output_two.css'}
-      ]
+      files: {
+        'tmp/restructure.css': ['test/fixtures/input.css']
+      }
+    },
+    banner: {
+      options: {
+        banner: '/* Copyleft */'
+      },
+      files: {
+        'tmp/banner.css': ['test/fixtures/input.css']
+      }
     }
   }
   ```
 
 ## Release History
 
-+ 2013/02/25 - v0.4.1 - Add banner comment option. 
++ 2013/03/26 - v0.5.0 - Add 'report' option (false by default).
++ 2013/02/25 - v0.4.1 - Add 'banner' option. 
 + 2013/02/17 - v0.4.0 - Support compatibility with Grunt 0.4.
 + 2013/01/17 - v0.3.0 - Improve file handling.
 + 2012/10/20 - v0.2.1 - Fix function to remove unnecessary argument.

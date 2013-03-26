@@ -22,13 +22,17 @@ module.exports = function(grunt) {
     // Configuration to be run (and then tested).
     csso: {
       compress: {
+        options: {
+          report: 'gzip'
+        },
         files: {
           'tmp/output.css': ['test/fixtures/input.css']
         }
       },
       restructure: {
         options: {
-          restructure: false
+          restructure: false,
+          report: 'min'
         },
         files: {
           'tmp/restructure.css': ['test/fixtures/input.css']
