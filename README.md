@@ -1,4 +1,4 @@
-# grunt-csso [![Build Status](https://secure.travis-ci.org/t32k/grunt-csso.png?branch=master)](http://travis-ci.org/t32k/grunt-csso)
+# grunt-csso [![Build Status](https://secure.travis-ci.org/t32k/grunt-csso.png?branch=master)](http://travis-ci.org/t32k/grunt-csso) [![NPM version](https://badge.fury.io/js/grunt-csso.png)](http://badge.fury.io/js/grunt-csso)
 
 > Minify CSS files with CSSO.
 
@@ -61,7 +61,7 @@ grunt.loadNpmTasks('grunt-csso');
 
 Example ouput using `'min'`:
 
-    ```
+    ```js
     Original: 99 bytes.
     Minified: 72 bytes.
     ```
