@@ -40,7 +40,7 @@ grunt.loadNpmTasks('grunt-csso');
 4. You can turns __structure minimization__ off like this:
 
     ```js
-    // Default Option value is true.
+    // Default option value is true.
     restructure: false
     ```
 
@@ -55,16 +55,16 @@ grunt.loadNpmTasks('grunt-csso');
 
     ```js
     // Choices: false, 'min', 'gzip'
-    // Default Option value is false.
+    // Default option value is false.
     report: 'gzip'
     ```
 
-Example ouput using 'min':
+Example ouput using `'min'`:
 
-  ```
-  Original: 99 bytes.
-  Minified: 72 bytes.
-  ```
+    ```
+    Original: 99 bytes.
+    Minified: 72 bytes.
+    ```
 
 ## Example Setup
 
@@ -75,7 +75,7 @@ Example ouput using 'min':
         report: 'gzip'
       },
       files: {
-        'tmp/output.css': ['test/fixtures/input.css']
+        'output.css': ['input.css']
       }
     },
     restructure: {
@@ -84,7 +84,7 @@ Example ouput using 'min':
         report: 'min'
       },
       files: {
-        'tmp/restructure.css': ['test/fixtures/input.css']
+        'restructure.css': ['input.css']
       }
     },
     banner: {
@@ -92,7 +92,7 @@ Example ouput using 'min':
         banner: '/* Copyleft */'
       },
       files: {
-        'tmp/banner.css': ['test/fixtures/input.css']
+        'banner.css': ['input.css']
       }
     }
   }
