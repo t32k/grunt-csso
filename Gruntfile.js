@@ -13,6 +13,7 @@ module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
+
     // Before generating any new files, remove any previously-created files.
     clean: {
       test: ['tmp']
@@ -22,7 +23,28 @@ module.exports = function(grunt) {
     csso: {
       compress: {
         files: {
-          'tmp/output.css': 'test/fixtures/input.css'
+          'tmp/output.css': ['test/fixtures/input.css']
+        }
+      },
+      restructure: {
+        options: {
+          restructure: false
+        },
+        files: {
+          'tmp/restructure.css': ['test/fixtures/input.css']
+        }
+      },
+      banner: {
+        options: {
+          banner: '/* Copyleft */'
+        },
+        files: {
+          'tmp/banner.css': ['test/fixtures/input.css']
+        }
+      },
+      empty: {
+        files: {
+          'tmp/idontexist.css': ['test/fixtures/idontexist.css']
         }
       }
     },
@@ -31,6 +53,7 @@ module.exports = function(grunt) {
     nodeunit: {
       tests: ['test/*_test.js']
     }
+
   });
 
   // Actually load this plugin's task(s).
@@ -39,7 +62,6 @@ module.exports = function(grunt) {
   // These plugins provide necessary tasks.
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
-  grunt.loadNpmTasks('grunt-contrib-internal');
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
