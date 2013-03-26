@@ -59,9 +59,9 @@ grunt.loadNpmTasks('grunt-csso');
     report: 'gzip'
     ```
 
-Example ouput using `'min'`:
+Example output using 'min':
 
-    ```js
+    ```
     Original: 99 bytes.
     Minified: 72 bytes.
     ```
