@@ -59,7 +59,7 @@ grunt.loadNpmTasks('grunt-csso');
     report: 'gzip'
     ```
 
-Example output using 'min':
+Example output using 'min' :
 
     ```shell
     Original: 99 bytes.
@@ -96,7 +96,7 @@ Example output using 'min':
         }
       }
     }
-  ```
+    ```
 
 ## Release History
 
