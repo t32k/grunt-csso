@@ -100,6 +100,7 @@ Example output using 'min':
 
 ## Release History
 
++ 2013/11/25 - v0.5.1 - Update CSSO.
 + 2013/03/26 - v0.5.0 - Add 'report' option (false by default).
 + 2013/02/25 - v0.4.1 - Add 'banner' option. 
 + 2013/02/17 - v0.4.0 - Support compatibility with Grunt 0.4.
