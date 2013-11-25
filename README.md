@@ -1,4 +1,12 @@
-# grunt-csso [![Build Status](https://secure.travis-ci.org/t32k/grunt-csso.png?branch=master)](http://travis-ci.org/t32k/grunt-csso) [![NPM version](https://badge.fury.io/js/grunt-csso.png)](http://badge.fury.io/js/grunt-csso)
+## grunt-csso 
+
+---
+
+[![Build Status](https://secure.travis-ci.org/t32k/grunt-csso.png?branch=master)](http://travis-ci.org/t32k/grunt-csso)
+[![NPM version](https://badge.fury.io/js/grunt-csso.png)](http://badge.fury.io/js/grunt-csso)
+[![Dependency Status](https://david-dm.org/t32k/grunt-csso.png)](https://david-dm.org/t32k/grunt-csso)
+[![devDependency Status](https://david-dm.org/t32k/grunt-csso/dev-status.png)](https://david-dm.org/t32k/grunt-csso#info=devDependencies)
+
 
 > Minify CSS files with CSSO.
 
@@ -59,7 +67,7 @@ grunt.loadNpmTasks('grunt-csso');
     report: 'gzip'
     ```
 
-Example output using 'min' :
+Example output using `min` :
 
     ```shell
     Original: 99 bytes.
@@ -100,6 +108,7 @@ Example output using 'min' :
 
 ## Release History
 
++ 2013/11/25 - v0.5.2 - Bump v0.5.2
 + 2013/11/25 - v0.5.1 - Update CSSO.
 + 2013/03/26 - v0.5.0 - Add 'report' option (false by default).
 + 2013/02/25 - v0.4.1 - Add 'banner' option. 
