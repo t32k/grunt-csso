@@ -61,41 +61,41 @@ grunt.loadNpmTasks('grunt-csso');
 
 Example output using 'min':
 
-    ```
+    ```shell
     Original: 99 bytes.
     Minified: 72 bytes.
     ```
 
 ## Example Setup
 
-  ```js
-  csso: {
-    compress: {
-      options: {
-        report: 'gzip'
+    ```js
+    csso: {
+      compress: {
+        options: {
+          report: 'gzip'
+        },
+        files: {
+          'output.css': ['input.css']
+        }
       },
-      files: {
-        'output.css': ['input.css']
-      }
-    },
-    restructure: {
-      options: {
-        restructure: false,
-        report: 'min'
+      restructure: {
+        options: {
+          restructure: false,
+          report: 'min'
+        },
+        files: {
+          'restructure.css': ['input.css']
+        }
       },
-      files: {
-        'restructure.css': ['input.css']
-      }
-    },
-    banner: {
-      options: {
-        banner: '/* Copyleft */'
-      },
-      files: {
-        'banner.css': ['input.css']
+      banner: {
+        options: {
+          banner: '/* Copyleft */'
+        },
+        files: {
+          'banner.css': ['input.css']
+        }
       }
     }
-  }
   ```
 
 ## Release History
