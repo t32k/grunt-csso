@@ -33,76 +33,76 @@ grunt.loadNpmTasks('grunt-csso');
 3. Configure `grunt csso` to minimizes your CSS file and call the task(s).
   e.g.:
 
-  ```js
-    csso: {
-      dist: {
-        files: {
-          'tmp/output.css': ['test/fixtures/input.css']
-        }
-      }
+```js
+csso: {
+  dist: {
+    files: {
+      'tmp/output.css': ['test/fixtures/input.css']
     }
-  ```
+  }
+}
+```
 
 4. You can turns __structure minimization__ off like this:
 
-    ```js
-    // Default option value is true.
-    restructure: false
-    ```
+```js
+// Default option value is true.
+restructure: false
+```
 
 5. You can add banner comment like in [grunt-contrib-concat](https://github.com/gruntjs/grunt-contrib-concat) or [grunt-contrib-uglify](https://github.com/gruntjs/grunt-contrib-uglify):
 
-    ```js
-    // Option
-    banner: '/* Copyleft */'
-    ```
+```js
+// Option
+banner: '/* Copyleft */'
+```
 
 6. You can change report style.
 
-    ```js
-    // Choices: false, 'min', 'gzip'
-    // Default option value is false.
-    report: 'gzip'
-    ```
+```js
+// Choices: false, 'min', 'gzip'
+// Default option value is false.
+report: 'gzip'
+```
 
 Example output using `min` :
 
-    ```shell
-    Original: 99 bytes.
-    Minified: 72 bytes.
-    ```
+```shell
+Original: 99 bytes.
+Minified: 72 bytes.
+```
 
 ## Example Setup
 
-    ```js
-    csso: {
-      compress: {
-        options: {
-          report: 'gzip'
-        },
-        files: {
-          'output.css': ['input.css']
-        }
-      },
-      restructure: {
-        options: {
-          restructure: false,
-          report: 'min'
-        },
-        files: {
-          'restructure.css': ['input.css']
-        }
-      },
-      banner: {
-        options: {
-          banner: '/* Copyleft */'
-        },
-        files: {
-          'banner.css': ['input.css']
-        }
-      }
+```js
+csso: {
+  compress: {
+    options: {
+      report: 'gzip'
+    },
+    files: {
+      'output.css': ['input.css']
     }
-    ```
+  },
+  restructure: {
+    options: {
+      restructure: false,
+      report: 'min'
+    },
+    files: {
+      'restructure.css': ['input.css']
+    }
+  },
+  banner: {
+    options: {
+      banner: '/* Copyleft */'
+    },
+    files: {
+      'banner.css': ['input.css']
+    }
+  }
+}
+```
 
 ## Release History
 
