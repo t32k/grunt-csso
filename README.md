@@ -103,9 +103,23 @@ csso: {
   }
 }
 ```
+### Minify all contents of a release directory and add a .min.css extension
+
+```js
+csso: {
+  dynamic_mappings: {
+    expand: true,
+    cwd: '/css/',
+    src: ['*.css', '!*.min.css'],
+    dest: 'dest/css/',
+    ext: '.min.css'
+  }
+}
+```
 
 ## Release History
 
++ 2013/12/19 - v0.5.3 - Bump v0.5.3
 + 2013/11/25 - v0.5.2 - Bump v0.5.2
 + 2013/11/25 - v0.5.1 - Update CSSO.
 + 2013/03/26 - v0.5.0 - Add 'report' option (false by default).

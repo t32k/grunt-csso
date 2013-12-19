@@ -50,6 +50,15 @@ module.exports = function(grunt) {
         files: {
           'tmp/idontexist.css': ['test/fixtures/idontexist.css']
         }
+      },
+      dynamic_mappings:{
+        files: [{
+          expand: true,
+          cwd: 'test/fixtures',
+          src: ['*.css', '!*.min.css'], //must *
+          dest: 'tmp/dest/',
+          ext: '.min.css'
+        }]
       }
     },
 

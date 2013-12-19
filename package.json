@@ -1,12 +1,12 @@
 {
   "name": "grunt-csso",
   "description": "Minify CSS files with CSSO.",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "homepage": "https://github.com/t32k/grunt-csso",
   "author": {
     "name": "Koji Ishimoto",
     "email": "ijok.ijok@gmail.com",
-    "url": "http://en.t32k.me"
+    "url": "http://t32k.me"
   },
   "repository": {
     "type": "git",
