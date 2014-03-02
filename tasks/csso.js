@@ -12,7 +12,7 @@ module.exports = function(grunt) {
 
     var csso = require('csso'),
         chalk = require('chalk'),
-        helper = require('grunt-lib-contrib').init(grunt);
+        maxmin = require('maxmin');
 
     // Tasks
     // ==========================================================================
@@ -51,7 +51,7 @@ module.exports = function(grunt) {
                 grunt.file.write(f.dest, min);
                 grunt.log.writeln('File ' + chalk.green(f.dest) + ' created.');
                 if (options.report) {
-                    helper.minMaxInfo(min, max, options.report);
+                    console.log(maxmin(max, min, options.report === 'gzip'));
                 }
             }
         });
