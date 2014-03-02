@@ -8,15 +8,16 @@
  */
 'use strict';
 
-module.exports = function (grunt) {
+module.exports = function(grunt) {
 
     var csso = require('csso'),
+        chalk = require('chalk'),
         helper = require('grunt-lib-contrib').init(grunt);
 
     // Tasks
     // ==========================================================================
 
-    grunt.registerMultiTask('csso', 'Minify CSS files with CSSO.', function () {
+    grunt.registerMultiTask('csso', 'Minify CSS files with CSSO.', function() {
 
         var options = this.options({
             restructure: true,
@@ -27,8 +28,8 @@ module.exports = function (grunt) {
         // Process banner.
         var banner = grunt.template.process(options.banner);
 
-        this.files.forEach(function (f) {
-            var max = f.src.filter(function (filepath) {
+        this.files.forEach(function(f) {
+            var max = f.src.filter(function(filepath) {
                 // Warn on and remove invalid source files (if nonull was set).
                 if (!grunt.file.exists(filepath)) {
                     grunt.log.warn('Source file "' + filepath + '" not found.');
@@ -48,7 +49,7 @@ module.exports = function (grunt) {
                 min = banner + min;
 
                 grunt.file.write(f.dest, min);
-                grunt.log.writeln('File ' + String(f.dest).green + ' created.');
+                grunt.log.writeln('File ' + chalk.green(f.dest) + ' created.');
                 if (options.report) {
                     helper.minMaxInfo(min, max, options.report);
                 }
@@ -65,7 +66,7 @@ module.exports = function (grunt) {
      * @param {String} src
      * @param {Boolean} isOpt
      */
-    var processCSSO = function (src, isOpt) {
+    var processCSSO = function(src, isOpt) {
         var min;
         if (isOpt) {
             min = csso.justDoIt(src);
