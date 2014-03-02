@@ -119,6 +119,7 @@ csso: {
 
 ## Release History
 
++ 2014/03/02 - v0.6.0 - Update dependencies modules.
 + 2013/12/19 - v0.5.3 - Bump v0.5.3
 + 2013/11/25 - v0.5.2 - Bump v0.5.2
 + 2013/11/25 - v0.5.1 - Update CSSO.
