@@ -61,15 +61,15 @@ banner: '/* Copyleft */'
 
 ```js
 // Choices: false, 'min', 'gzip'
-// Default option value is false.
+// Default option value is `false`.
+// Show gzipped size of min. Pretty slow.
 report: 'gzip'
 ```
 
-Example output using `min` :
+Example output using `gzip` :
 
 ```shell
-Original: 99 bytes.
-Minified: 72 bytes.
+105 B → 64 B → 49 B (gzip)
 ```
 
 ## Example Setup
