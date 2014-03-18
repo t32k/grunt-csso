@@ -1,4 +1,4 @@
-# grunt-csso 
+# grunt-csso  v0.6.1
 
 [![Build Status](https://secure.travis-ci.org/t32k/grunt-csso.png?branch=master)](http://travis-ci.org/t32k/grunt-csso)
 [![NPM version](https://badge.fury.io/js/grunt-csso.png)](http://badge.fury.io/js/grunt-csso)
@@ -26,53 +26,41 @@ grunt.loadNpmTasks('grunt-csso');
 *This plugin was designed to work with Grunt 0.4.x. If you're still using grunt v0.3.x it's strongly recommended that [you upgrade](http://gruntjs.com/upgrading-from-0.3-to-0.4).*
 
 
-## Installation & Options
+## CSSO task
 
-1. Install this grunt plugin next to your project's grunt.js gruntfile with: `npm install grunt-csso`.
-2. Call `grunt.loadNpmTasks('grunt-csso')` in your gruntfile.
-3. Configure `grunt csso` to minimizes your CSS file and call the task(s).
-  e.g.:
+Run this task with the `grunt csso` command.
 
-```js
-csso: {
-  dist: {
-    files: {
-      'tmp/output.css': ['test/fixtures/input.css']
-    }
-  }
-}
-```
+Task targets, files and options may be specified according to the grunt [Configuring tasks](http://gruntjs.com/configuring-tasks) guide.
 
-4. You can turns __structure minimization__ off like this:
+Files are compressed with [csso](http://css.github.io/csso/).
 
-```js
-// Default option value is true.
-restructure: false
-```
 
-5. You can add banner comment like in [grunt-contrib-concat](https://github.com/gruntjs/grunt-contrib-concat) or [grunt-contrib-uglify](https://github.com/gruntjs/grunt-contrib-uglify):
+### Options
 
-```js
-// Option
-banner: '/* Copyleft */'
-```
+#### restructure
 
-6. You can change report style.
+Type: `Boolean`
+Default: `true`
 
-```js
-// Choices: false, 'min', 'gzip'
-// Default option value is `false`.
-// Show gzipped size of min. Pretty slow.
-report: 'gzip'
-```
+You can turns __[structural optimizations](http://bem.info/tools/optimizers/csso/description/)__ off.
 
-Example output using `gzip` :
+#### banner
 
-```shell
-105 B → 64 B → 49 B (gzip)
-```
+Type: `String`
+Default: `null`
 
-## Example Setup
+Prefix the compressed source with the given banner, with a linebreak inbetween.
+
+
+#### report
+
+Choise: `false`, `'min'`, `'gzip'`
+Default: `false`
+
+Either report only minification result or report minification and gzip results. This is useful to see exactly how well clean-css is performing but using `'gzip'` will make the task take 5-10x longer to complete. [Example output](https://github.com/sindresorhus/maxmin#readme).
+
+
+### Usage Examples
 
 ```js
 csso: {
@@ -103,7 +91,8 @@ csso: {
   }
 }
 ```
-### Minify all contents of a release directory and add a .min.css extension
+
+#### Minify all contents of a release directory and add a `.min.css` extension
 
 ```js
 csso: {
@@ -119,6 +108,7 @@ csso: {
 
 ## Release History
 
++ 2014/03/18 - v0.6.1 - Bug fix several bugs.
 + 2014/03/02 - v0.6.0 - Update dependencies modules.
 + 2013/12/19 - v0.5.3 - Bump v0.5.3
 + 2013/11/25 - v0.5.2 - Bump v0.5.2
@@ -140,29 +130,8 @@ Many thanks!
 + [Ayumu Sato](https://github.com/ahomu)
 + [Artem Sapegin](https://github.com/sapegin)
 
----
+## License
 
-# LICENSE MIT
+Code is released under [the MIT license](LICENSE).
 
-Copyright (c) 2013 Koji Ishimoto
-
-Permission is hereby granted, free of charge, to any person
-obtaining a copy of this software and associated documentation
-files (the "Software"), to deal in the Software without
-restriction, including without limitation the rights to use,
-copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the
-Software is furnished to do so, subject to the following
-conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-OTHER DEALINGS IN THE SOFTWARE.
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/t32k/grunt-csso/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
