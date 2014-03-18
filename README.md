@@ -39,14 +39,14 @@ Files are compressed with [csso](http://css.github.io/csso/).
 
 #### restructure
 
-Type: `Boolean`
+Type: `Boolean`  
 Default: `true`
 
 You can turns __[structural optimizations](http://bem.info/tools/optimizers/csso/description/)__ off.
 
 #### banner
 
-Type: `String`
+Type: `String`  
 Default: `null`
 
 Prefix the compressed source with the given banner, with a linebreak inbetween.
@@ -54,7 +54,7 @@ Prefix the compressed source with the given banner, with a linebreak inbetween.
 
 #### report
 
-Choise: `false`, `'min'`, `'gzip'`
+Choise: `false`, `'min'`, `'gzip'`  
 Default: `false`
 
 Either report only minification result or report minification and gzip results. This is useful to see exactly how well clean-css is performing but using `'gzip'` will make the task take 5-10x longer to complete. [Example output](https://github.com/sindresorhus/maxmin#readme).
