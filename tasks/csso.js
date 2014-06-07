@@ -7,7 +7,7 @@
  */
 'use strict';
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
   var fs = require('fs');
   var path = require('path');
@@ -16,7 +16,7 @@ module.exports = function(grunt) {
   var chalk = require('chalk');
   var maxmin = require('maxmin');
 
-  grunt.registerMultiTask('csso', 'Minify CSS files with CSSO.', function() {
+  grunt.registerMultiTask('csso', 'Minify CSS files with CSSO.', function () {
 
     var options = this.options({
       restructure: true,
