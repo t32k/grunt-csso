@@ -50,7 +50,7 @@ module.exports = function(grunt) {
                     'tmp/idontexist.css': ['test/fixtures/idontexist.css']
                 }
             },
-            dynamic_mappings: {
+            dynamicMappings: {
                 files: [{
                     expand: true,
                     cwd: 'test/fixtures',
@@ -63,7 +63,7 @@ module.exports = function(grunt) {
 
         // Unit tests.
         nodeunit: {
-            tests: ['test/*_test.js']
+            tests: ['test/*-test.js']
         }
 
     });
