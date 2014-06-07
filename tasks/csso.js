@@ -7,14 +7,16 @@
  */
 'use strict';
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
   var fs = require('fs');
+  var path = require('path');
+
   var csso = require('csso');
   var chalk = require('chalk');
   var maxmin = require('maxmin');
 
-  grunt.registerMultiTask('csso', 'Minify CSS files with CSSO.', function() {
+  grunt.registerMultiTask('csso', 'Minify CSS files with CSSO.', function () {
 
     var options = this.options({
       restructure: true,
@@ -26,25 +28,37 @@ module.exports = function(grunt) {
     var banner = grunt.template.process(options.banner);
 
     this.files.forEach(function (file) {
-      var original = file.src.filter(function (path) {
-        // Warn on and remove invalid source files (if nonull was set).
-        if (!fs.existsSync(path)) {
-          grunt.log.warn('Source file "' + path + '" is not found.');
+
+      // 1. check existence
+      // 2. check file extension
+      // 3. load and concatenate css files
+      var original = file.src.filter(function (p) {
+        if (!fs.existsSync(p)) {
+          grunt.log.warn('Source file "' + p + '" is not found.');
           return false;
         } else {
           return true;
         }
-      }).map(function (path) {
-        return fs.readFileSync(path, {
+      }).filter(function (p) {
+        if (path.extname(p) !== '.css') {
+          grunt.log.warn('Source file "' + p + '" is not css.');
+          return false;
+        } else {
+          return true;
+        }
+      }).map(function (p) {
+        return fs.readFileSync(p, {
           encoding: 'utf8'
         });
       }).join(grunt.util.normalizelf(grunt.util.linefeed));
 
+      // reverse flag
       var proceed = csso.justDoIt(original, !options.restructure);
-      if (proceed.length < 1) {
+
+      if (proceed.length === 0) {
         grunt.log.warn('Destination is not created because minified CSS was empty.');
       } else {
-        // Add banner.
+        // add banner.
         proceed = banner + proceed;
 
         grunt.file.write(file.dest, proceed);
