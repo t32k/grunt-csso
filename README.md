@@ -1,9 +1,9 @@
 # grunt-csso  v0.6.1
 
-[![Build Status](https://secure.travis-ci.org/t32k/grunt-csso.png?branch=master)](http://travis-ci.org/t32k/grunt-csso)
-[![NPM version](https://badge.fury.io/js/grunt-csso.png)](http://badge.fury.io/js/grunt-csso)
-[![Dependency Status](https://david-dm.org/t32k/grunt-csso.png)](https://david-dm.org/t32k/grunt-csso)
-[![devDependency Status](https://david-dm.org/t32k/grunt-csso/dev-status.png)](https://david-dm.org/t32k/grunt-csso#info=devDependencies)
+[![Build Status](https://secure.travis-ci.org/t32k/grunt-csso.svg?branch=master)](http://travis-ci.org/t32k/grunt-csso)
+[![NPM version](https://badge.fury.io/js/grunt-csso.svg)](http://badge.fury.io/js/grunt-csso)
+[![Dependency Status](https://david-dm.org/t32k/grunt-csso.svg)](https://david-dm.org/t32k/grunt-csso)
+[![devDependency Status](https://david-dm.org/t32k/grunt-csso/dev-status.svg)](https://david-dm.org/t32k/grunt-csso#info=devDependencies)
 
 
 > Minify CSS files with CSSO.
