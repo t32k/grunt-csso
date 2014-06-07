@@ -5,78 +5,77 @@
  * Copyright (c) 2013-2014 Koji Ishimoto
  * Licensed under the MIT license.
  */
-
 'use strict';
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
-    // Project configuration.
-    grunt.initConfig({
+  // Project configuration.
+  grunt.initConfig({
 
-        // Before generating any new files, remove any previously-created files.
-        clean: {
-            test: ['tmp']
+    // Before generating any new files, remove any previously-created files.
+    clean: {
+      test: ['tmp']
+    },
+
+    // Configuration to be run (and then tested).
+    csso: {
+      compress: {
+        options: {
+          report: 'gzip'
         },
-
-        // Configuration to be run (and then tested).
-        csso: {
-            compress: {
-                options: {
-                    report: 'gzip'
-                },
-                files: {
-                    'tmp/output.css': ['test/fixtures/input.css']
-                }
-            },
-            restructure: {
-                options: {
-                    restructure: false,
-                    report: 'min'
-                },
-                files: {
-                    'tmp/restructure.css': ['test/fixtures/input.css']
-                }
-            },
-            banner: {
-                options: {
-                    banner: '/* Copyleft */'
-                },
-                files: {
-                    'tmp/banner.css': ['test/fixtures/input.css']
-                }
-            },
-            empty: {
-                files: {
-                    'tmp/idontexist.css': ['test/fixtures/idontexist.css']
-                }
-            },
-            dynamicMappings: {
-                files: [{
-                    expand: true,
-                    cwd: 'test/fixtures',
-                    src: ['*.css', '!*.min.css'], //must *
-                    dest: 'tmp/dest/',
-                    ext: '.min.css'
-                }]
-            }
-        },
-
-        // Unit tests.
-        nodeunit: {
-            tests: ['test/*-test.js']
+        files: {
+          'tmp/output.css': ['test/fixtures/input.css']
         }
+      },
+      restructure: {
+        options: {
+          restructure: false,
+          report: 'min'
+        },
+        files: {
+          'tmp/restructure.css': ['test/fixtures/input.css']
+        }
+      },
+      banner: {
+        options: {
+          banner: '/* Copyleft */'
+        },
+        files: {
+          'tmp/banner.css': ['test/fixtures/input.css']
+        }
+      },
+      empty: {
+        files: {
+          'tmp/idontexist.css': ['test/fixtures/idontexist.css']
+        }
+      },
+      dynamicMappings: {
+        files: [{
+          expand: true,
+          cwd: 'test/fixtures',
+          src: ['*.css', '!*.min.css'], //must *
+          dest: 'tmp/dest/',
+          ext: '.min.css'
+        }]
+      }
+    },
 
-    });
+    // Unit tests.
+    nodeunit: {
+      tests: ['test/*-test.js']
+    }
 
-    // Actually load this plugin's task(s).
-    grunt.loadTasks('tasks');
+  });
 
-    // These plugins provide necessary tasks.
-    grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-contrib-nodeunit');
+  // Actually load this plugin's task(s).
+  grunt.loadTasks('tasks');
 
-    // Whenever the "test" task is run, first clean the "tmp" dir, then run this
-    // plugin's task(s), then test the result.
-    grunt.registerTask('test', ['clean', 'csso', 'nodeunit']);
+  // These plugins provide necessary tasks.
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-nodeunit');
+
+  // Whenever the "test" task is run, first clean the "tmp" dir, then run this
+  // plugin's task(s), then test the result.
+  grunt.registerTask('test', ['clean', 'csso', 'nodeunit']);
 
 };

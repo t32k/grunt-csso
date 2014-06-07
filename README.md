@@ -1,4 +1,4 @@
-# grunt-csso  v0.6.1
+# grunt-csso  v0.6.2
 
 [![Build Status](https://secure.travis-ci.org/t32k/grunt-csso.svg?branch=master)](http://travis-ci.org/t32k/grunt-csso)
 [![NPM version](https://badge.fury.io/js/grunt-csso.svg)](http://badge.fury.io/js/grunt-csso)
@@ -108,6 +108,7 @@ csso: {
 
 ## Release History
 
++ 2014/03/18 - v0.6.2 - Update dependencies modules.
 + 2014/03/18 - v0.6.1 - Bug fix several bugs.
 + 2014/03/02 - v0.6.0 - Update dependencies modules.
 + 2013/12/19 - v0.5.3 - Bump v0.5.3
@@ -126,6 +127,7 @@ csso: {
 
 Many thanks!
 
++ [Shogo Sensui](https://github.com/1000ch)
 + [Tyler Kellen](https://github.com/tkellen)
 + [Ayumu Sato](https://github.com/ahomu)
 + [Artem Sapegin](https://github.com/sapegin)
