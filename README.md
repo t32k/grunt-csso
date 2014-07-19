@@ -1,10 +1,8 @@
-# grunt-csso  v0.6.2
+# grunt-csso  v0.6.3
 
 [![Build Status](https://secure.travis-ci.org/t32k/grunt-csso.svg?branch=master)](http://travis-ci.org/t32k/grunt-csso)
 [![NPM version](https://badge.fury.io/js/grunt-csso.svg)](http://badge.fury.io/js/grunt-csso)
 [![Dependency Status](https://david-dm.org/t32k/grunt-csso.svg)](https://david-dm.org/t32k/grunt-csso)
-[![devDependency Status](https://david-dm.org/t32k/grunt-csso/dev-status.svg)](https://david-dm.org/t32k/grunt-csso#info=devDependencies)
-
 
 > Minify CSS files with CSSO.
 
@@ -108,6 +106,7 @@ csso: {
 
 ## Release History
 
++ 2014/07/20 - v0.6.3 - Update dependencies modules.
 + 2014/03/18 - v0.6.2 - Update dependencies modules.
 + 2014/03/18 - v0.6.1 - Bug fix several bugs.
 + 2014/03/02 - v0.6.0 - Update dependencies modules.
@@ -135,5 +134,3 @@ Many thanks!
 ## License
 
 Code is released under [the MIT license](LICENSE).
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/t32k/grunt-csso/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
