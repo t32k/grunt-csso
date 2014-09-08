@@ -62,10 +62,10 @@ module.exports = function (grunt) {
         proceed = banner + proceed;
 
         grunt.file.write(file.dest, proceed);
-        grunt.log.writeln('File ' + chalk.green(file.dest) + ' created.');
         if (options.report) {
-          grunt.log.writeln(maxmin(original, proceed, options.report === 'gzip'));
+          var report =(maxmin(original, proceed, options.report === 'gzip'));
         }
+        grunt.log.writeln('File ' + chalk.cyan(file.dest) + ' created' + ((report) ? ': ' + report : '.'));
       }
     });
   });
