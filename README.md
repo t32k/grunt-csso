@@ -1,4 +1,4 @@
-# grunt-csso  v0.6.4
+# grunt-csso  v0.6.5
 
 [![Build Status](https://secure.travis-ci.org/t32k/grunt-csso.svg?branch=master)](http://travis-ci.org/t32k/grunt-csso)
 [![NPM version](https://badge.fury.io/js/grunt-csso.svg)](http://badge.fury.io/js/grunt-csso)
@@ -106,6 +106,7 @@ csso: {
 
 ## Release History
 
++ 2014/11/30 - v0.6.5 - Improve CLI output.
 + 2014/11/17 - v0.6.4 - Update dependencies modules.
 + 2014/07/20 - v0.6.3 - Update dependencies modules.
 + 2014/03/18 - v0.6.2 - Update dependencies modules.
