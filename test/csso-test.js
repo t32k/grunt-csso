@@ -7,8 +7,8 @@ exports.csso = {
     test.expect(1);
 
     test.equal(
-      fs.readFileSync('test/expected/output.css', {encoding: 'utf8'}),
-      fs.readFileSync('tmp/output.css', {encoding: 'utf8'}),
+      fs.readFileSync('test/expected/output.css', 'utf8'),
+      fs.readFileSync('tmp/output.css', 'utf8'),
     'should minify');
 
     test.done();
@@ -17,8 +17,8 @@ exports.csso = {
     test.expect(1);
 
     test.equal(
-      fs.readFileSync('test/expected/restructure.css', {encoding: 'utf8'}),
-      fs.readFileSync('tmp/restructure.css', {encoding: 'utf8'}),
+      fs.readFileSync('test/expected/restructure.css', 'utf8'),
+      fs.readFileSync('tmp/restructure.css', 'utf8'),
       'should minify with restructure'
     );
 
@@ -28,8 +28,8 @@ exports.csso = {
     test.expect(1);
 
     test.equal(
-      fs.readFileSync('test/expected/banner.css', {encoding: 'utf8'}),
-      fs.readFileSync('tmp/banner.css', {encoding: 'utf8'}),
+      fs.readFileSync('test/expected/banner.css', 'utf8'),
+      fs.readFileSync('tmp/banner.css', 'utf8'),
       'should minify css and prepend prefix banner'
     );
 
@@ -45,18 +45,29 @@ exports.csso = {
 
     test.done();
   },
+  shortcut: function (test) {
+    test.expect(1);
+
+    test.equal(
+      fs.readFileSync('test/expected/output.css', 'utf8'),
+      fs.readFileSync('test/fixtures/override.css', 'utf8'),
+      'should override minify'
+    );
+
+    test.done();
+  },
   dynamicMappings: function (test) {
     test.expect(2);
 
     test.equal(
-      fs.readFileSync('test/expected/output.css', {encoding: 'utf8'}),
-      fs.readFileSync('tmp/dest/input.min.css', {encoding: 'utf8'}),
+      fs.readFileSync('test/expected/output.css', 'utf8'),
+      fs.readFileSync('tmp/dest/input.min.css', 'utf8'),
       'should minify with dynamic mappings'
     );
 
     test.equal(
-      fs.readFileSync('test/expected/output2.css', {encoding: 'utf8'}),
-      fs.readFileSync('tmp/dest/input2.min.css', {encoding: 'utf8'}),
+      fs.readFileSync('test/expected/output2.css', 'utf8'),
+      fs.readFileSync('tmp/dest/input2.min.css', 'utf8'),
       'should minify with dynamic mappings'
     );
 

@@ -49,6 +49,9 @@ module.exports = function (grunt) {
           'tmp/idontexist.css': ['test/fixtures/idontexist.css']
         }
       },
+      shortcut: {
+        src: 'test/fixtures/override.css'
+      },
       dynamicMappings: {
         files: [{
           expand: true,
@@ -76,6 +79,7 @@ module.exports = function (grunt) {
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
+  grunt.registerTask('default', ['test']);
   grunt.registerTask('test', ['clean', 'csso', 'nodeunit']);
 
 };
