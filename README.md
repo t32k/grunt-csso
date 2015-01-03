@@ -1,7 +1,6 @@
-# grunt-csso  v0.6.5
+# grunt-csso  v0.7.0
 
 [![Build Status](https://secure.travis-ci.org/t32k/grunt-csso.svg?branch=master)](http://travis-ci.org/t32k/grunt-csso)
-[![NPM version](https://badge.fury.io/js/grunt-csso.svg)](http://badge.fury.io/js/grunt-csso)
 [![Dependency Status](https://david-dm.org/t32k/grunt-csso.svg)](https://david-dm.org/t32k/grunt-csso)
 
 > Minify CSS files with CSSO.
@@ -86,6 +85,9 @@ csso: {
     files: {
       'banner.css': ['input.css']
     }
+  },
+  shortcut: {
+    src: 'override.css'
   }
 }
 ```
@@ -103,35 +105,6 @@ csso: {
   }
 }
 ```
-
-## Release History
-
-+ 2014/11/30 - v0.6.5 - Improve CLI output.
-+ 2014/11/17 - v0.6.4 - Update dependencies modules.
-+ 2014/07/20 - v0.6.3 - Update dependencies modules.
-+ 2014/03/18 - v0.6.2 - Update dependencies modules.
-+ 2014/03/18 - v0.6.1 - Bug fix several bugs.
-+ 2014/03/02 - v0.6.0 - Update dependencies modules.
-+ 2013/12/19 - v0.5.3 - Bump v0.5.3
-+ 2013/11/25 - v0.5.2 - Bump v0.5.2
-+ 2013/11/25 - v0.5.1 - Update CSSO.
-+ 2013/03/26 - v0.5.0 - Add 'report' option (false by default).
-+ 2013/02/25 - v0.4.1 - Add 'banner' option. 
-+ 2013/02/17 - v0.4.0 - Support compatibility with Grunt 0.4.
-+ 2013/01/17 - v0.3.0 - Improve file handling.
-+ 2012/10/20 - v0.2.1 - Fix function to remove unnecessary argument.
-+ 2012/10/20 - v0.2.0 - Changed CSSO task from the command line to from the npm module.
-+ 2012/10/15 - v0.1.1 - Added keyword "gruntplugin" to package.json.
-+ 2012/10/14 - v0.1.0 - Initial release.
-
-## Contributors
-
-Many thanks!
-
-+ [Shogo Sensui](https://github.com/1000ch)
-+ [Tyler Kellen](https://github.com/tkellen)
-+ [Ayumu Sato](https://github.com/ahomu)
-+ [Artem Sapegin](https://github.com/sapegin)
 
 ## License
 
