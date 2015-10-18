@@ -54,7 +54,7 @@ module.exports = function (grunt) {
       }).join(grunt.util.normalizelf(grunt.util.linefeed));
 
       // reverse flag
-      var proceed = csso.justDoIt(original, !options.restructure);
+      var proceed = csso.minify(original, !options.restructure);
 
       if (proceed.length === 0) {
         grunt.log.warn('Destination is not created because minified CSS was empty.');
