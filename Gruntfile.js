@@ -29,7 +29,7 @@ module.exports = function (grunt) {
       },
       restructure: {
         options: {
-          restructure: false,
+          restructuring: false,
           report: 'min'
         },
         files: {
