@@ -21,7 +21,8 @@ module.exports = function (grunt) {
     var options = this.options({
       restructuring: true,
       banner: '',
-      report: false
+      report: false,
+      debug: false
     });
 
     // Process banner.
@@ -54,7 +55,8 @@ module.exports = function (grunt) {
       }).join(grunt.util.normalizelf(grunt.util.linefeed));
 
       // reverse flag
-      var proceed = csso.minify(original, { restructuring: options.restructuring });
+      console.log(options.restructuring);
+      var proceed = csso.minify(original, { restructuring: options.restructuring, debug: options.debug });
 
       if (proceed.length === 0) {
         grunt.log.warn('Destination is not created because minified CSS was empty.');
