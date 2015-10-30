@@ -33,7 +33,7 @@ module.exports = function (grunt) {
           report: 'min'
         },
         files: {
-          'tmp/restructure.css': ['test/fixtures/input.css']
+          'tmp/restructure-off.css': ['test/fixtures/input.css']
         }
       },
       banner: {

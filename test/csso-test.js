@@ -17,9 +17,9 @@ exports.csso = {
     test.expect(1);
 
     test.equal(
-      fs.readFileSync('test/expected/restructure.css', 'utf8'),
-      fs.readFileSync('tmp/restructure.css', 'utf8'),
-      'should minify with restructure'
+      fs.readFileSync('test/expected/restructure-off.css', 'utf8'),
+      fs.readFileSync('tmp/restructure-off.css', 'utf8'),
+      'should minify without restructure'
     );
 
     test.done();
