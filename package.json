@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "chalk": "^1.0.0",
-    "csso": "^1.3.11",
+    "csso": "^1.4.1",
     "maxmin": "^1.0.0"
   },
   "devDependencies": {
