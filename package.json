@@ -1,7 +1,7 @@
 {
   "name": "grunt-csso",
   "description": "Minify CSS files with CSSO.",
-  "version": "0.7.1",
+  "version": "0.8.0",
   "homepage": "https://github.com/t32k/grunt-csso",
   "author": {
     "name": "Koji Ishimoto",
@@ -15,14 +15,9 @@
   "bugs": {
     "url": "https://github.com/t32k/grunt-csso/issues"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/t32k/grunt-csso/blob/master/LICENSE-MIT"
-    }
-  ],
+  "license": "MIT",
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=0.12.0"
   },
   "scripts": {
     "test": "grunt test"
@@ -45,7 +40,6 @@
     "gruntplugin",
     "minifier",
     "optimize",
-    "css",
     "csso"
   ]
 }
