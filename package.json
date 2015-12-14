@@ -25,16 +25,13 @@
   "dependencies": {
     "chalk": "^1.0.0",
     "csso": "^1.4.1",
-    "maxmin": "^1.0.0"
+    "maxmin": "^2.0.0"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-cli": "^0.1.13",
-    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-clean": "^0.7.0",
     "grunt-contrib-nodeunit": "^0.4.1"
-  },
-  "peerDependencies": {
-    "grunt": "^0.4.5"
   },
   "keywords": [
     "gruntplugin",
