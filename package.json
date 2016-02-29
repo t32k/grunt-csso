@@ -23,14 +23,14 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "chalk": "^1.0.0",
-    "csso": "^1.4.4",
-    "maxmin": "^2.0.0"
+    "chalk": "^1.1.1",
+    "csso": "^1.6.1",
+    "maxmin": "^2.1.0"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-cli": "^0.1.13",
-    "grunt-contrib-clean": "^0.7.0",
+    "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-nodeunit": "^0.4.1"
   },
   "keywords": [
