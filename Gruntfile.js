@@ -2,7 +2,7 @@
  * grunt-csso
  * http://github.com/t32k/grunt-csso
  *
- * Copyright (c) 2013-2014 Koji Ishimoto
+ * Copyright (c) 2013-2016 Koji Ishimoto
  * Licensed under the MIT license.
  */
 'use strict';
