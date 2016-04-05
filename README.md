@@ -105,7 +105,3 @@ csso: {
   }
 }
 ```
-
-## License
-
-Code is released under the MIT license.
