@@ -51,8 +51,14 @@ module.exports = (grunt) => {
         });
       }).join(grunt.util.normalizelf(grunt.util.linefeed));
 
-      // reverse flag
-      let proceed = csso.minify(original, { restructure: options.restructure, debug: options.debug }).css;
+      let proceed;
+      try {
+        proceed = csso.minify(original, { restructure: options.restructure, debug: options.debug }).css;
+      }
+      catch (err) {
+        grunt.fail.fatal(err.message + '  (' + err.parseError.line + ')');
+        return;
+      }
 
       if (proceed.length === 0) {
         grunt.log.warn('Destination is not created because minified CSS was empty.');
