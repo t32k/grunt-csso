@@ -19,7 +19,7 @@ module.exports = function (grunt) {
   grunt.registerMultiTask('csso', 'Minify CSS files with CSSO.', function () {
 
     var options = this.options({
-      restructuring: true,
+      restructure: true,
       banner: '',
       report: false,
       debug: false
@@ -55,8 +55,8 @@ module.exports = function (grunt) {
       }).join(grunt.util.normalizelf(grunt.util.linefeed));
 
       // reverse flag
-      console.log(options.restructuring);
-      var proceed = csso.minify(original, { restructuring: options.restructuring, debug: options.debug });
+      console.log(options.restructure);
+      var proceed = csso.minify(original, { restructure: options.restructure, debug: options.debug }).css;
 
       if (proceed.length === 0) {
         grunt.log.warn('Destination is not created because minified CSS was empty.');
