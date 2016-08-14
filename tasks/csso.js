@@ -7,56 +7,52 @@
  */
 'use strict';
 
-module.exports = function (grunt) {
-
-  var fs = require('fs');
-  var path = require('path');
-
-  var csso = require('csso');
-  var chalk = require('chalk');
-  var maxmin = require('maxmin');
+module.exports = (grunt) => {
+  const fs = require('fs');
+  const path = require('path');
+  const csso = require('csso');
+  const chalk = require('chalk');
+  const maxmin = require('maxmin');
 
   grunt.registerMultiTask('csso', 'Minify CSS files with CSSO.', function () {
-
-    var options = this.options({
+    let report;
+    let options = this.options({
       restructure: true,
       banner: '',
       report: false,
       debug: false
     });
-
     // Process banner.
-    var banner = grunt.template.process(options.banner);
+    let banner = grunt.template.process(options.banner);
 
-    this.files.forEach(function (file) {
-      var dest = file.dest || file.src[0];
+    this.files.forEach((file) => {
+      let dest = file.dest || file.src[0];
 
-      // 1. check existence
-      // 2. check file extension
-      // 3. load and concatenate css files
-      var original = file.src.filter(function (p) {
+      // 1. Check existence
+      // 2. Check file extension
+      // 3. Load and concatenate css files
+      let original = file.src.filter((p) => {
         if (!fs.existsSync(p)) {
           grunt.log.warn('Source file "' + p + '" is not found.');
           return false;
         } else {
           return true;
         }
-      }).filter(function (p) {
+      }).filter((p) => {
         if (path.extname(p) !== '.css') {
           grunt.log.warn('Source file "' + p + '" is not css.');
           return false;
         } else {
           return true;
         }
-      }).map(function (p) {
+      }).map((p) => {
         return fs.readFileSync(p, {
           encoding: 'utf8'
         });
       }).join(grunt.util.normalizelf(grunt.util.linefeed));
 
       // reverse flag
-      console.log(options.restructure);
-      var proceed = csso.minify(original, { restructure: options.restructure, debug: options.debug }).css;
+      let proceed = csso.minify(original, { restructure: options.restructure, debug: options.debug }).css;
 
       if (proceed.length === 0) {
         grunt.log.warn('Destination is not created because minified CSS was empty.');
@@ -66,7 +62,7 @@ module.exports = function (grunt) {
 
         grunt.file.write(dest, proceed);
         if (options.report) {
-          var report = maxmin(original, proceed, options.report === 'gzip');
+          report = maxmin(original, proceed, options.report === 'gzip');
         }
         grunt.log.writeln('File ' + chalk.cyan(dest) + ' created' + ((report) ? ': ' + report : '.'));
       }
