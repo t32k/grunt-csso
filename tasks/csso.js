@@ -15,23 +15,33 @@ module.exports = (grunt) => {
   const maxmin = require('maxmin');
 
   grunt.registerMultiTask('csso', 'Minify CSS files with CSSO.', function () {
-    let report;
-    let options = this.options({
+    const now = () => (new Date()).getTime();
+    const options = this.options({
       restructure: true,
       banner: '',
       report: false,
       debug: false
     });
+    const done = (() => {
+      const start = now();
+      const done = this.async();
+      return () => {
+        if (options.report) {
+          grunt.log.writeln('Executed in %d ms', now() - start);
+        }
+        return done();
+      };
+    })();
     // Process banner.
-    let banner = grunt.template.process(options.banner);
+    const banner = grunt.template.process(options.banner);
 
     this.files.forEach((file) => {
-      let dest = file.dest || file.src[0];
+      const dest = file.dest || file.src[0];
 
       // 1. Check existence
       // 2. Check file extension
       // 3. Load and concatenate css files
-      let original = file.src.filter((p) => {
+      const original = file.src.filter((p) => {
         if (!fs.existsSync(p)) {
           grunt.log.warn('Source file "' + p + '" is not found.');
           return false;
@@ -51,7 +61,7 @@ module.exports = (grunt) => {
         });
       }).join(grunt.util.normalizelf(grunt.util.linefeed));
 
-      let proceed;
+      let proceed = '';
       try {
         proceed = csso.minify(original, { restructure: options.restructure, debug: options.debug }).css;
       }
@@ -67,11 +77,13 @@ module.exports = (grunt) => {
         proceed = banner + proceed;
 
         grunt.file.write(dest, proceed);
+        grunt.log.write('File ' + chalk.cyan(dest) + ' created' + (options.report ? ': ' : '.'));
         if (options.report) {
-          report = maxmin(original, proceed, options.report === 'gzip');
+          grunt.log.write(maxmin(original, dest, options.report === 'gzip'));
         }
-        grunt.log.writeln('File ' + chalk.cyan(dest) + ' created' + ((report) ? ': ' + report : '.'));
+        grunt.log.writeln();
       }
+      done();
     });
   });
 };
