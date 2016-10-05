@@ -23,7 +23,8 @@ module.exports = (grunt) => {
       report: false,
       debug: false,
       beforeCompress: null,
-      afterCompress: null
+      afterCompress: null,
+      encoding: grunt.file.defaultEncoding
     });
     const done = (() => {
       const start = now();
@@ -71,7 +72,7 @@ module.exports = (grunt) => {
         // add banner.
         proceed = banner + proceed;
 
-        grunt.file.write(dest, proceed);
+        grunt.file.write(dest, proceed, {encoding: options.encoding});
         grunt.log.write('File ' + chalk.cyan(dest) + ' created' + (options.report ? ': ' : '.'));
         if (options.report) {
           grunt.log.write(maxmin(original, proceed, options.report === 'gzip'));
@@ -105,7 +106,7 @@ module.exports = (grunt) => {
         }
         // 3. Load and concatenate css files
         async.reduce(existing, '', (buffer, stylesheet, next) => {
-          fs.readFile(stylesheet, 'utf-8', (err, file) => {
+          fs.readFile(stylesheet, options.encoding, (err, file) => {
             if (err) {
               return next(err);
             }
