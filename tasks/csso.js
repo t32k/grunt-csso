@@ -101,11 +101,11 @@ module.exports = (grunt) => {
       });
 
       // 2. Check existence
-      async.filter(css, (p, next) => fs.exists(p, (exists) => {
-        if (!exists) {
-          grunt.log.warn('Source file "' + p + '" is not found.');
+      async.filter(css, (p, next) => fs.access(p, fs.R_OK, (err) => {
+        if (err) {
+          grunt.log.warn('Source file "' + p + '" is not found or not readable.');
         }
-        next(null, exists);
+        next(err, !err);
       }), (err, existing) => {
         if (err) {
           return next(err);
