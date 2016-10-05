@@ -62,24 +62,30 @@ module.exports = (grunt) => {
         }).css;
       }
       catch (err) {
-        next(err);
-        return;
+        return next(err);
       }
 
       if (proceed.length === 0) {
         grunt.log.warn('Destination is not created because minified CSS was empty.');
+        next();
       } else {
         // add banner.
         proceed = banner + proceed;
-
-        grunt.file.write(dest, proceed, {encoding: options.encoding});
-        grunt.log.write('File ' + chalk.cyan(dest) + ' created' + (options.report ? ': ' : '.'));
-        if (options.report) {
-          grunt.log.write(maxmin(original, proceed, options.report === 'gzip'));
-        }
-        grunt.log.writeln();
+        // create all intermediate folders
+        grunt.file.write(dest, '');
+        // actually write the file
+        fs.writeFile(dest, proceed, options.encoding, (err) => {
+          if (err) {
+            return next(err);
+          }
+          grunt.log.write('File ' + chalk.cyan(dest) + ' created' + (options.report ? ': ' : '.'));
+          if (options.report) {
+            grunt.log.write(maxmin(original, proceed, options.report === 'gzip'));
+          }
+          grunt.log.writeln();
+          next();
+        });
       }
-      next();
     };
 
     async.each(this.files, (file, next) => {
