@@ -72,5 +72,22 @@ exports.csso = {
     );
 
     test.done();
+  },
+  plugins: function (test) {
+    test.expect(2);
+
+    test.equal(
+      'beforeCompress',
+      fs.readFileSync('tmp/beforeCompress', 'utf8'),
+      'should create the beforeCompress file'
+    );
+
+    test.equal(
+      'afterCompress',
+      fs.readFileSync('tmp/afterCompress', 'utf8'),
+      'should create the afterCompress file'
+    );
+
+    test.done();
   }
 };

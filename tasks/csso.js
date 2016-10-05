@@ -21,7 +21,9 @@ module.exports = (grunt) => {
       restructure: true,
       banner: '',
       report: false,
-      debug: false
+      debug: false,
+      beforeCompress: null,
+      afterCompress: null
     });
     const done = (() => {
       const start = now();
@@ -35,13 +37,27 @@ module.exports = (grunt) => {
     })();
     // Process banner.
     const banner = grunt.template.process(options.banner);
-    
+    // Plugin wrapper
+    const wrapPlugins = (plugins) => {
+      const wrapPlugin = (plugin) => (res, options) => {
+        return plugin(res, options, csso);
+      };
+      if (Array.isArray(plugins)) {
+        return plugins.map(wrapPlugin);
+      }
+      if (typeof plugins === 'function') {
+        return [wrapPlugin(plugins)];
+      }
+      return undefined;
+    };
     const proceed = (original, dest, next) => {
       let proceed = '';
       try {
         proceed = csso.minify(original, {
           restructure: options.restructure,
-          debug: options.debug
+          debug: options.debug,
+          beforeCompress: wrapPlugins(options.beforeCompress),
+          afterCompress: wrapPlugins(options.afterCompress)
         }).css;
       }
       catch (err) {

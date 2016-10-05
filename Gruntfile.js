@@ -60,6 +60,19 @@ module.exports = function (grunt) {
           dest: 'tmp/dest/',
           ext: '.min.css'
         }]
+      },
+      plugins: {
+        options: {
+          beforeCompress: function (ast, options, csso) {
+            require('fs').writeFileSync('tmp/beforeCompress', 'beforeCompress');
+          },
+          afterCompress: [function (ast, options, csso) {
+            require('fs').writeFileSync('tmp/afterCompress', 'afterCompress');
+          }]
+        },
+        files: {
+          'tmp/plugins.css': 'test/fixtures/input.css'
+        }
       }
     },
 

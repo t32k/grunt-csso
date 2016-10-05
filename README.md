@@ -30,11 +30,25 @@ Prefix the compressed source with the given banner, with a linebreak inbetween.
 
 #### report
 
-Choise: `false`, `'min'`, `'gzip'`  
+Choices: `false`, `true`, `'min'`, `'gzip'`  
 Default: `false`
 
 Either report only minification result or report minification and gzip results. This is useful to see exactly how well clean-css is performing but using `'gzip'` will make the task take 5-10x longer to complete. [Example output](https://github.com/sindresorhus/maxmin#readme).
 
+
+#### beforeCompress
+
+Type: `(ast, options, csso) => {}`, `[(ast, options, csso) => {}]`  
+Default: `null`
+
+Allows registering one or many `beforeCompress` functions. This is useful to add manipulate the AST before compression is made by csso.
+
+#### afterCompress
+
+Type: `(ast, options, csso) => {}`, `[(ast, options, csso) => {}]`  
+Default: `null`
+
+Allows registering one or many `afterCompress` functions. This is useful to add manipulate the AST after compression is made by csso.
 
 ### Usage Examples
 
