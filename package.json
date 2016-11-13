@@ -7,6 +7,11 @@
     "name": "Koji Ishimoto",
     "url": "http://t32k.me/"
   },
+  "maintainers": [{
+    "name": "nitriques",
+    "email": "open-source@deuxhuithuit.com",
+    "url": "https://deuxhuithuit.com/"
+  }],
   "repository": {
     "type": "git",
     "url": "git://github.com/t32k/grunt-csso.git"
