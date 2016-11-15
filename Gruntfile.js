@@ -27,6 +27,14 @@ module.exports = function (grunt) {
           'tmp/output.css': ['test/fixtures/input.css']
         }
       },
+      sourcemap: {
+        options: {
+            sourceMap: true
+        },
+        files: {
+          'tmp/sourcemap.css': ['test/fixtures/autoprefixer.css']
+        }
+      },
       restructure: {
         options: {
           restructure: false,

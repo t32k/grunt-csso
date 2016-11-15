@@ -24,6 +24,7 @@ module.exports = (grunt) => {
       debug: false,
       beforeCompress: null,
       afterCompress: null,
+      sourceMap: false,
       encoding: grunt.file.defaultEncoding
     });
     const done = (() => {
@@ -52,35 +53,44 @@ module.exports = (grunt) => {
       return undefined;
     };
     const proceed = (original, dest, next) => {
-      let proceed = '';
+      let css = '';
+      let map = '';
       try {
-        proceed = csso.minify(original, {
+        const result = csso.minify(original, {
           restructure: options.restructure,
           debug: options.debug,
+          sourceMap: options.sourceMap,
           beforeCompress: wrapPlugins(options.beforeCompress),
           afterCompress: wrapPlugins(options.afterCompress)
-        }).css;
+        });
+        css = result.css;
+        map = result.map || map;
       }
       catch (err) {
         return next(err);
       }
 
-      if (proceed.length === 0) {
+      if (css.length === 0) {
         grunt.log.warn('Destination is not created because minified CSS was empty.');
         next();
       } else {
         // add banner.
-        proceed = banner + proceed;
+        css = banner + css;
         // create all intermediate folders
         grunt.file.write(dest, '');
         // actually write the file
-        fs.writeFile(dest, proceed, options.encoding, (err) => {
+        fs.writeFile(dest, css, options.encoding, (err) => {
           if (err) {
             return next(err);
           }
           grunt.log.write('File ' + chalk.cyan(dest) + ' created' + (options.report ? ': ' : '.'));
           if (options.report) {
-            grunt.log.write(maxmin(original, proceed, options.report === 'gzip'));
+            grunt.log.write(maxmin(original, css, options.report === 'gzip'));
+          }
+          if (map) {
+              const mapDest = dest + '.map';
+              grunt.file.write(mapDest, map);
+              grunt.log.write('File ' + chalk.cyan(mapDest) + ' created' + (options.report ? ': ' : '.'));
           }
           grunt.log.writeln();
           next();

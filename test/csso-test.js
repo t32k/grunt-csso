@@ -13,6 +13,16 @@ exports.csso = {
 
     test.done();
   },
+  sourcemap: function (test) {
+    test.expect(1);
+
+    test.equal(
+      fs.readFileSync('test/expected/sourcemap.css.map', 'utf8'),
+      fs.readFileSync('tmp/sourcemap.css.map', 'utf8'),
+    'should create sourcemap');
+
+    test.done();
+  },
   restructure: function (test) {
     test.expect(1);
 
