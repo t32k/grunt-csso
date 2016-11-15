@@ -9,6 +9,7 @@
 
 module.exports = (grunt) => {
   const fs = require('fs');
+  const eol = require('os').EOL;
   const path = require('path');
   const csso = require('csso');
   const chalk = require('chalk');
@@ -64,37 +65,45 @@ module.exports = (grunt) => {
           afterCompress: wrapPlugins(options.afterCompress)
         });
         css = result.css;
-        map = result.map || map;
+        map = result.map;
       }
       catch (err) {
         return next(err);
       }
 
-      if (css.length === 0) {
+      if (!css) {
         grunt.log.warn('Destination is not created because minified CSS was empty.');
         next();
       } else {
         // add banner.
         css = banner + css;
+        // add map if possible.
+        const mapDest = dest + '.map';
+        if (map) {
+            css = css + eol + '/*# sourceMappingURL=' + path.basename(mapDest) + ' */'
+        }
         // create all intermediate folders
         grunt.file.write(dest, '');
-        // actually write the file
-        fs.writeFile(dest, css, options.encoding, (err) => {
-          if (err) {
-            return next(err);
-          }
-          grunt.log.write('File ' + chalk.cyan(dest) + ' created' + (options.report ? ': ' : '.'));
+
+        const wrapUp = () => {grunt.log.writeln(); next();};
+        const finishAfterCount = count =>
+            () => --count < 1 ? wrapUp() : undefined;
+        const waitOrFinish = finishAfterCount(map ? 2 : 1);
+        const writeFile = (dest, text, cb) =>
+          fs.writeFile(dest, text, options.encoding, (err) => {
+            if (err) {return next(err);}
+            grunt.log.write('File ' + chalk.cyan(dest) + ' created' + (options.report ? ': ' : '.'));
+            cb && cb();
+            waitOrFinish();
+          });
+
+        // actually write files
+        writeFile(dest, css, () => {
           if (options.report) {
             grunt.log.write(maxmin(original, css, options.report === 'gzip'));
           }
-          if (map) {
-              const mapDest = dest + '.map';
-              grunt.file.write(mapDest, map);
-              grunt.log.write('File ' + chalk.cyan(mapDest) + ' created' + (options.report ? ': ' : '.'));
-          }
-          grunt.log.writeln();
-          next();
         });
+        if (map) { writeFile(mapDest, map); }
       }
     };
 
