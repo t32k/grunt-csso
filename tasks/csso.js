@@ -83,7 +83,7 @@ module.exports = (grunt) => {
           css = `${css}${options.linefeed}/*# sourceMappingURL=${path.basename(mapDest)} */`;
         }
         // create all intermediate folders
-        grunt.file.write(dest, '');
+        grunt.file.mkdir(path.dirname(dest));
 
         const wrapUp = () => {grunt.log.writeln(); next();};
         const finishAfterCount = count =>
