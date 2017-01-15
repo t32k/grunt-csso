@@ -22,7 +22,7 @@ exports.csso = {
       fs.readFileSync('tmp/sourcemap.css', 'utf8'),
     'should create sourcemap');
     test.equal(
-      fs.readFileSync('test/expected/sourcemap.css.map', 'utf8').replace(/(\\r)?\\n/g, eol === '\r\n' ? '\\r\\n' : '\\n'),
+      fs.readFileSync('test/expected/sourcemap.css.map', 'utf8'),
       fs.readFileSync('tmp/sourcemap.css.map', 'utf8'),
     'should create sourcemap');
 

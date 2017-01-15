@@ -8,6 +8,9 @@
 'use strict';
 
 module.exports = function (grunt) {
+  // Overrides some values
+  grunt.util.linefeed = '\n';
+  grunt.file.preserveBOM = false;
 
   // Project configuration.
   grunt.initConfig({

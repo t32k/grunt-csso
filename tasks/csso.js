@@ -9,7 +9,6 @@
 
 module.exports = (grunt) => {
   const fs = require('fs');
-  const eol = require('os').EOL;
   const path = require('path');
   const csso = require('csso');
   const chalk = require('chalk');
@@ -26,7 +25,8 @@ module.exports = (grunt) => {
       beforeCompress: null,
       afterCompress: null,
       sourceMap: false,
-      encoding: grunt.file.defaultEncoding
+      encoding: grunt.file.defaultEncoding,
+      linefeed: grunt.util.linefeed
     });
     const done = (() => {
       const start = now();
@@ -80,7 +80,7 @@ module.exports = (grunt) => {
         // add map if possible.
         const mapDest = dest + '.map';
         if (map) {
-            css = css + eol + '/*# sourceMappingURL=' + path.basename(mapDest) + ' */'
+          css = `${css}${options.linefeed}/*# sourceMappingURL=${path.basename(mapDest)} */`;
         }
         // create all intermediate folders
         grunt.file.write(dest, '');
