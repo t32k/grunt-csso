@@ -32,7 +32,7 @@
     "test": "grunt test"
   },
   "peerDependencies": {
-    "grunt": ">=1.0.0"
+    "grunt-cli": ">=1.0.0"
   },
   "dependencies": {
     "async": "^2.1.2",
