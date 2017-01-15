@@ -1,6 +1,7 @@
 'use strict';
 
 const fs = require('fs');
+const eol = require('os').EOL;
 
 exports.csso = {
   main: function (test) {
@@ -10,6 +11,20 @@ exports.csso = {
       fs.readFileSync('test/expected/output.css', 'utf8'),
       fs.readFileSync('tmp/output.css', 'utf8'),
     'should minify');
+
+    test.done();
+  },
+  sourcemap: function (test) {
+    test.expect(2);
+
+    test.equal(
+      fs.readFileSync('test/expected/sourcemap.css', 'utf8'),
+      fs.readFileSync('tmp/sourcemap.css', 'utf8'),
+    'should create sourcemap');
+    test.equal(
+      fs.readFileSync('test/expected/sourcemap.css.map', 'utf8').replace(/(\\r)?\\n/g, eol === '\r\n' ? '\\r\\n' : '\\n'),
+      fs.readFileSync('tmp/sourcemap.css.map', 'utf8'),
+    'should create sourcemap');
 
     test.done();
   },

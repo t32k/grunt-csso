@@ -12,6 +12,11 @@
     "email": "open-source@deuxhuithuit.com",
     "url": "https://deuxhuithuit.com/"
   }],
+  "contributors": [{
+    "name": "szarouski",
+    "email": "sergey@webuniverse.io",
+    "url": "http://webuniverse.io/"
+  }],
   "repository": {
     "type": "git",
     "url": "git://github.com/t32k/grunt-csso.git"
