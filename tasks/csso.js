@@ -25,6 +25,7 @@ module.exports = (grunt) => {
       beforeCompress: null,
       afterCompress: null,
       sourceMap: false,
+      comments: true,
       encoding: grunt.file.defaultEncoding,
       linefeed: grunt.util.linefeed
     });
@@ -61,6 +62,7 @@ module.exports = (grunt) => {
           restructure: options.restructure,
           debug: options.debug,
           sourceMap: options.sourceMap,
+          comments: options.comments,
           beforeCompress: wrapPlugins(options.beforeCompress),
           afterCompress: wrapPlugins(options.afterCompress)
         });

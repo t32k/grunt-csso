@@ -28,6 +28,16 @@ exports.csso = {
 
     test.done();
   },
+  comments: function (test) {
+    test.expect(1);
+
+    test.equal(
+      fs.readFileSync('test/expected/sourcemap.css', 'utf8'),
+      fs.readFileSync('tmp/sourcemap.css', 'utf8'),
+    'should minify and remove all but the first exclamation comment');
+
+    test.done();
+  },
   restructure: function (test) {
     test.expect(1);
 

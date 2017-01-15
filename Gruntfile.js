@@ -38,6 +38,14 @@ module.exports = function (grunt) {
           'tmp/sourcemap.css': ['test/fixtures/autoprefixer.css']
         }
       },
+      comment: {
+        options: {
+            comment: 'first-exclamation'
+        },
+        files: {
+          'tmp/comments.css': ['test/fixtures/comments.css']
+        }
+      },
       restructure: {
         options: {
           restructure: false,
