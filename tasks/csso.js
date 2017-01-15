@@ -85,25 +85,28 @@ module.exports = (grunt) => {
         // create all intermediate folders
         grunt.file.mkdir(path.dirname(dest));
 
-        const wrapUp = () => {grunt.log.writeln(); next();};
-        const finishAfterCount = count =>
-            () => --count < 1 ? wrapUp() : undefined;
-        const waitOrFinish = finishAfterCount(map ? 2 : 1);
-        const writeFile = (dest, text, cb) =>
-          fs.writeFile(dest, text, options.encoding, (err) => {
-            if (err) {return next(err);}
-            grunt.log.write('File ' + chalk.cyan(dest) + ' created' + (options.report ? ': ' : '.'));
-            cb && cb();
-            waitOrFinish();
-          });
+        const writeFile = (args, next) => {
+          fs.writeFile(args.dest, args.text, options.encoding, next);
+        };
+
+        const files = [{dest: dest, text: css}];
+        if (map) {
+          files.push({dest: mapDest, text: map});
+        }
 
         // actually write files
-        writeFile(dest, css, () => {
+        async.map(files, writeFile, (err, results) => {
+          if (err) {
+            return next(err);
+          }
+          
+          grunt.log.write('File ' + chalk.cyan(dest) + ' created' + (options.report ? ': ' : '.'));
           if (options.report) {
             grunt.log.write(maxmin(original, css, options.report === 'gzip'));
           }
+          grunt.log.writeln();
+          next();
         });
-        if (map) { writeFile(mapDest, map); }
       }
     };
 
