@@ -63,6 +63,7 @@ module.exports = (grunt) => {
           debug: options.debug,
           sourceMap: options.sourceMap,
           comments: options.comments,
+          filename: options.filename,
           beforeCompress: wrapPlugins(options.beforeCompress),
           afterCompress: wrapPlugins(options.afterCompress)
         });

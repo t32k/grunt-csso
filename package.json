@@ -7,16 +7,20 @@
     "name": "Koji Ishimoto",
     "url": "http://t32k.me/"
   },
-  "maintainers": [{
-    "name": "nitriques",
-    "email": "open-source@deuxhuithuit.com",
-    "url": "https://deuxhuithuit.com/"
-  }],
-  "contributors": [{
-    "name": "szarouski",
-    "email": "sergey@webuniverse.io",
-    "url": "http://webuniverse.io/"
-  }],
+  "maintainers": [
+    {
+      "name": "nitriques",
+      "email": "open-source@deuxhuithuit.com",
+      "url": "https://deuxhuithuit.com/"
+    }
+  ],
+  "contributors": [
+    {
+      "name": "szarouski",
+      "email": "sergey@webuniverse.io",
+      "url": "http://webuniverse.io/"
+    }
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/t32k/grunt-csso.git"
@@ -37,8 +41,8 @@
   },
   "dependencies": {
     "async": "^2.1.2",
-    "chalk": "^1.1.3",
-    "csso": "^2.3.0",
+    "chalk": "^2.3.0",
+    "csso": "^3.4.0",
     "maxmin": "^2.1.0"
   },
   "devDependencies": {
