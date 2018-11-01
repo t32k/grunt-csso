@@ -20,11 +20,11 @@ exports.csso = {
     test.equal(
       fs.readFileSync('test/expected/sourcemap.css', 'utf8'),
       fs.readFileSync('tmp/sourcemap.css', 'utf8'),
-    'should create sourcemap');
+    'should create sourcemap css');
     test.equal(
       fs.readFileSync('test/expected/sourcemap.css.map', 'utf8'),
       fs.readFileSync('tmp/sourcemap.css.map', 'utf8'),
-    'should create sourcemap');
+    'should create sourcemap file');
 
     test.done();
   },
