@@ -36,19 +36,18 @@
     "test": "grunt test"
   },
   "peerDependencies": {
-    "grunt": "^1.0.1",
-    "grunt-cli": ">=1.0.0"
+    "grunt": "^1.0.3"
   },
   "dependencies": {
-    "async": "^2.1.2",
-    "chalk": "^2.3.0",
-    "csso": "^3.4.0",
+    "async": "^2.6.1",
+    "chalk": "^2.4.1",
+    "csso": "^3.5.1",
     "maxmin": "^2.1.0"
   },
   "devDependencies": {
-    "grunt": "^1.0.1",
-    "grunt-contrib-clean": "^1.0.0",
-    "grunt-contrib-nodeunit": "^1.0.0"
+    "grunt": "^1.0.3",
+    "grunt-contrib-clean": "^2.0.0",
+    "grunt-contrib-nodeunit": "^2.0.0"
   },
   "keywords": [
     "gruntplugin",
